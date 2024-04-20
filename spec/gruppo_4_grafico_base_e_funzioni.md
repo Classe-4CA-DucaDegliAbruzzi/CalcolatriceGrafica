@@ -18,7 +18,7 @@ Il costruttore non è astratto e non deve essere modificato dalle sottoclassi.
 Prende due parametri: una tela, di tipo
 [`Tela`](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/spec/gruppo_2_tela_disegno_grafici.md#specifiche-tela),
 e la classe dei parametri da utilizzare la quale deve derivare da
-[`BaseInputParametri`](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/spec/gruppo_3_interfaccia_parametrie_relazioni.md#specifiche-baseinputparametri).
+[`BaseInputParametri`](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/spec/gruppo_3_interfaccia_parametri_e_relazioni.md#specifiche-baseinputparametri).
 
 #### Attributi
 
