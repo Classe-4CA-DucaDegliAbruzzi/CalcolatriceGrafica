@@ -6,7 +6,7 @@
 
 L'interfaccia che mette insieme quello che viene prodotto dagli altri gruppi.
 
-## Specifiche
+## Specifiche `Applicazione`
 
 L'interfaccia deve permettere di fare le seguenti cose:
 

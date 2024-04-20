@@ -6,7 +6,7 @@
 
 La parte dell'interfaccia in cui vengono disegnati i grafici.
 
-## Specifiche
+## Specifiche `Tela`
 
 Creare una classe `Tela` con i seguenti requisiti.
 
