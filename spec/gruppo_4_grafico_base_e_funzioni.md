@@ -28,8 +28,8 @@ e la classe dei parametri da utilizzare la quale deve derivare da
 
 #### Metodi astratti
 
-- `str_formato()`: un metodo che restituisce la stringa utilizzata come formato
-  dalla classe dell'input parametri
+- `crea_param()`: un metodo che restituisce una nuova istanza di una sottoclasse
+  di `BaseInputParametri`
 - `disegna()`: un metodo che disegna la funzione sulla `tela`
 
 ### Specifiche `BaseGraficoFunzioneX` e `BaseGraficoFunzioneY`
@@ -50,7 +50,7 @@ Scrivere `(ABC, BaseGrafico)` risulterebbe in un errore.
 
 #### Metodi astratti
 
-- `str_formato()` rimane astratto
+- `crea_param()` rimane astratto
 - `funzione(x, parametri)`: un metodo che prende due argomenti, il primo è il
   valore della x per `BaseGraficoFunzioneX` oppure della y per
   `BaseGraficoFunzioneY`, il secondo è un dizionario che contiene come chiavi i
