@@ -28,31 +28,37 @@ e la classe dei parametri da utilizzare la quale deve derivare da
 
 #### Metodi astratti
 
-- `str_formato`: un metodo che restituisce la stringa utilizzata come formato
+- `str_formato()`: un metodo che restituisce la stringa utilizzata come formato
   dalla classe dell'input parametri
-- `disegna`: un metodo che disegna la funzione sulla `tela`
+- `disegna()`: un metodo che disegna la funzione sulla `tela`
 
-### Specifiche `BaseGraficoFunzioneX`
+### Specifiche `BaseGraficoFunzioneX` e `BaseGraficoFunzioneY`
 
-Creare una classe astratta `BaseGraficoFunzioneX` che deriva da `BaseGrafico`.
+Creare due classi astratte `BaseGraficoFunzioneX` e  `BaseGraficoFunzioneY` che
+derivano da `BaseGrafico`.
 
-Scrivere così la dichiarazione:
+Scrivere così le dichiarazioni:
 
 ```python
 class BaseGraficoFunzioneX(BaseGrafico, ABC):
     ...
+class BaseGraficoFunzioneY(BaseGrafico, ABC):
+    ...
 ```
 
-Scrivere `BaseGraficoFunzioneX(ABC, BaseGrafico)` risulterebbe in un errore.
+Scrivere `(ABC, BaseGrafico)` risulterebbe in un errore.
 
 #### Metodi astratti
 
-- `str_formato` rimane astratto
-- `funzione`: un metodo che prende due argomenti, il primo è il valore della `x`
-  il secondo è un dizionario che contiene come chiavi i nomi dei parametri di
-  `param` e come valori i valori di questi parametri
+- `str_formato()` rimane astratto
+- `funzione(x, parametri)`: un metodo che prende due argomenti, il primo è il
+  valore della x per `BaseGraficoFunzioneX` oppure della y per
+  `BaseGraficoFunzioneY`, il secondo è un dizionario che contiene come chiavi i
+  nomi dei parametri di `param` e come valori i valori di questi parametri
 
 #### Metodi
 
-- `disegna`: questo metodo viene implementato e disegna la funzione andando da
-  un estremo all'altro della `tela` e calcolando il valore con `funzione`
+- `disegna`: questo metodo viene implementato e disegna la funzione, nel caso di
+  `BaseGraficoFunzioneX` va da un estremo all'altro dell'asse x e calcola la y
+  con la funzione, invece `BaseGraficoFunzioneY` va da un estremo all'altro
+  dell'asse y e calcola il valore della x con la funzione

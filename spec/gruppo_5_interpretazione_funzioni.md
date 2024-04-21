@@ -31,6 +31,16 @@ seguito.
 
 #### Metodi astratti
 
-- `calcola`: prende un argomento che è il valore della variabile indipendente e
-  restituisce il valore della funzione per il parametro passato oppure `None` se
-  il parametro è fuori dal dominio
+- `calcola(x)`: prende un argomento che è il valore della variabile indipendente
+  e restituisce il valore della funzione per il parametro passato oppure `None`
+  se il parametro è fuori dal dominio
+
+### Specifiche `ErroreInterpretazione`
+
+Creare una classe `ErroreInterpretazione` che abbia le caratteristiche scritte
+di seguito. **Non si devono creare istanze di questa classe** al di fuori di
+`interpreta_funzioni`, quindi il costruttore è libero.
+
+#### Metodi
+
+- `msg()`: restituisce una stringa che contiene la spiegazione dell'errore

@@ -6,9 +6,11 @@ Se si voglio aggiungere attributi o metodi non richiesti alle classi
 specificate, questi devono avere due trattini bassi prima del nome:
 
 ```text
-❌ metodo_non_richiesto
-❌ attributo_non_richiesto
+❌
+metodo_non_richiesto
+attributo_non_richiesto
 
-✅ __metodo_non_richiesto
-✅ __attributo_non_richiesto
+✅
+__metodo_non_richiesto
+__attributo_non_richiesto
 ```
