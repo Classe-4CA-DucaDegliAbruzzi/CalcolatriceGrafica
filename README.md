@@ -4,6 +4,14 @@
 
 Potete trovare le specifiche nella cartella `spec/`.
 
+## Numeri gruppi
+
+- Gruppo 1: Francesco Desario
+- Gruppo 2: Elia Bertoldo
+- Gruppo 3: Matteo Favero
+- Gruppo 4: Emma Rossi
+- Gruppo 5: Davide Taffarello
+
 ## Codice
 
 Mettere il codice sorgente in `src/`, non modificare `main.py` eccetto per
