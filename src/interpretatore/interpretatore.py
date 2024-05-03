@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from .lexer import ErroreInterpretazione
 
 
 class NodoBase(ABC):
