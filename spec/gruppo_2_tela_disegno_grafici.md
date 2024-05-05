@@ -76,6 +76,32 @@ utilizzate nel calcolo dei valori all'interno delle funzioni. `range_x` e
 nella finestra. Quindi, cambiando `range_x` e `range_y`, anche la conversione da
 coordinata del piano e coordinata della tela cambia.
 
+## Esempio di utilizzo
+
+```python
+canvas = tk.Canvas(root, width=500, height=500)
+tela = Tela(canvas)
+
+tela.colore = "#FF0000"  # rosso
+tela.spessore = 2
+tela.range_x = (-5, 5)
+tela.range_y = (-5, 5)
+
+# disegna le linee di sfondo
+tela.disegna_sfondo()
+
+# disegna un segmento da (-3, 2) a (4, 1)
+x1 = tela.x_piano_a_x_tela(-3)
+y1 = tela.y_piano_a_y_tela(2)
+
+x2 = tela.x_piano_a_x_tela(4)
+y2 = tela.y_piano_a_y_tela(1)
+tela.linea((x1, y1), (x2, y2))
+
+# disegna i numeri delle linee
+tela.disegna_numeri()
+```
+
 ## Immagini
 
 Metodo `ellisse`:
