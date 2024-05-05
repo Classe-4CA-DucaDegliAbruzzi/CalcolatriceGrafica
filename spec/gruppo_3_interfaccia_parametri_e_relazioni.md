@@ -110,3 +110,61 @@ Creare delle sottoclassi che derivano da
 [`BaseGrafico`](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/spec/gruppo_4_grafico_base_e_funzioni.md#specifiche-basegrafico)
 e che implementano i
 metodi astratti per disegnare cerchi, ellissi e iperboli.
+
+## Esempio di utilizzo
+
+### Esempio di `InputCaselle`
+
+```python
+input_caselle = InputCaselle("y = $a$x^2 + $b$x + $c$")
+print(input_caselle.lista_nomi())  # ['a', 'b', 'c']
+
+# Facciamo finta che nelle caselle ci sia scritto
+# '1' nella casella di a, '' in quella di b e '4' in quella di c
+print(input_caselle.validi())  # False (perché b è vuota)
+print(input_caselle.valore('a'))  # 1
+print(input_caselle.valore('b'))  # None
+print(input_caselle.valore('d'))  # 4
+
+# Ora facciamo finta che nelle caselle ci sia scritto
+# '1' in a, '0.5' in b e '4' in c
+print(input_caselle.validi())  # True
+
+a = input_caselle.valore('a')
+print(a)  # 1
+print(type(a))  # <class 'float'>
+print(input_caselle.valore('b'))  # 0.5
+print(input_caselle.valore('c'))  # 4
+print(input_caselle.valore('k'))  # None
+```
+
+### Esempio di `InputFunzione`
+
+```python
+input_funzione = InputFunzione("x")
+print(input_funzione.lista_nomi())  # []
+
+# Facciamo finta che ci sia scritto 'x +'
+# qui quando si chiama `interpreta_funzione` viene restituito un
+# `ErroreInterpretazione`
+print(input_funzione.validi())  # False
+print(input_funzione.valore(5))  # None
+print(input_funzione.valore('5'))  # None
+
+# Facciamo finta che ci sia scritto 'x + 3'
+print(input_funzione.validi())  # True
+print(input_funzione.valore(5))  # 8
+print(input_funzione.valore('5'))  # None (è una stringa non un numero)
+
+input_funzione_y = InputFunzione("y")
+
+# Facciamo finta che ci sia scritto 'x + 3'
+print(input_funzione.validi())  # False (esiste solo la y)
+print(input_funzione.valore(5))  # None
+print(input_funzione.valore('5'))  # None
+
+# Facciamo finta che ci sia scritto 'y + 3'
+print(input_funzione.validi())  # True
+print(input_funzione.valore(5))  # 8
+print(input_funzione.valore('5'))  # None (è una stringa non un numero)
+```
