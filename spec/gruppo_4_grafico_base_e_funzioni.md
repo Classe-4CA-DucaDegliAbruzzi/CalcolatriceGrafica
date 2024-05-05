@@ -71,7 +71,7 @@ Scrivere `(ABC, BaseGrafico)` risulterebbe in un errore.
 
 class EllissiSemplice(BaseGrafico):
     def crea_param(self):
-        return InputCaselle("x^2 / $a$ + y^2 / $b$ = 1")
+        return InputCaselle("x^2 / $a$^2 + y^2 / $b$^2 = 1")
 
     def disegna(self):
         if not self.param.validi():
