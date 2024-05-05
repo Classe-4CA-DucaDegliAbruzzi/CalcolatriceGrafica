@@ -1,0 +1,14 @@
+19 Aprile
+Davide Taffarello: creata repository
+
+20 Aprile
+Davide Taffarello: aggiunte specifiche
+
+21 Aprile
+Davide Taffarello: modificate alcune specifiche
+
+3 Maggio
+Davide Taffarello: improntato pacchetto gruppo
+
+5 Maggio
+Davide Taffarello: aggiunta classe Token, migliorate le specifiche con esempi
