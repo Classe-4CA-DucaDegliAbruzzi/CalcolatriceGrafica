@@ -28,8 +28,6 @@ dentro a classi e funzioni non è eseguito se non chiamato esplicitamente
 
 ### Stile
 
-Possibilmente seguire lo stile definito nella [PEP 8](https://peps.python.org/pep-0008/).
-
 Utilizzare nomi di variabili descrittivi eccetto in contesti matematici:[^1]
 
 [^1]: motivo: rende il codice più leggibile e semplice da interpretare
