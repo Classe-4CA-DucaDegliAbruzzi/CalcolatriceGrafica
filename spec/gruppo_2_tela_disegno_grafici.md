@@ -62,6 +62,7 @@ vedi sotto.
   - *non devono* seguire `colore` e `spessore` 
 - `disegna_numeri()`: disegna i numeri delle linee disegnate con
   `disegna_sfondo`
+- `pulisci()`: ripulisce la tela togliendo tutti gli elementi disegnati
 
 #### Coordinate del piano e coordinate della tela
 
@@ -79,7 +80,7 @@ coordinata del piano e coordinata della tela cambia.
 ## Esempio di utilizzo
 
 ```python
-canvas = tk.Canvas(root, width=500, height=500)
+# `canvas` è un oggetto di tipo tk.Canvas
 tela = Tela(canvas)
 
 tela.colore = "#FF0000"  # rosso
@@ -103,6 +104,10 @@ tela.disegna_numeri()
 ```
 
 ## Immagini
+
+Schema coordinate tela VS coordinate piano:
+
+![Coordinate](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/coordinate.png)
 
 Metodo `ellisse`:
 
