@@ -36,9 +36,9 @@ vedi sotto.
 
 - `w()`: restituisce la larghezza in pixel della `Canvas`, non prende argomenti
 - `h()`: restituisce l'altezza in pixel della `Canvas`, non prende argomenti
-- `x_tela_a_x_piano(x_tela)`, `y_tela_a_y_piano(y_tela)`: convertono una 
+- `x_tela_a_x_piano(x_tela)`, `y_tela_a_y_piano(y_tela)`: convertono una
   coordinata della tela a una coordinata del piano
-- `x_piano_a_x_tela(x_tela)`, `y_piano_a_y_tela(y_tela)`: convertono una 
+- `x_piano_a_x_tela(x_piano)`, `y_piano_a_y_tela(y_piano)`: convertono una
   coordinata del piano a una coordinata sulla tela
 - `linea(p1, p2)`: disegna un segmento sulla tela
   - prende i due estremi come argomenti che sono tuple o liste di lunghezza 2
@@ -56,10 +56,12 @@ vedi sotto.
   e `p2`
   - prende come argomenti due punti: `p1` è l'angolo in alto a sinistra del
     rettangolo e `p2` quello in basso a destra
+  - il colore e lo spessore dell'ellisse è dettato dagli attributi `colore` e
+    `spessore`
 - `disegna_sfondo()`: disegna le linee del piano sulla `Canvas`
   - è a discrezione del gruppo come queste cambiano al cambiare di `range_x` e
     `range_y`
-  - *non devono* seguire `colore` e `spessore` 
+  - *non devono* seguire `colore` e `spessore`
 - `disegna_numeri()`: disegna i numeri delle linee disegnate con
   `disegna_sfondo`
 - `pulisci()`: ripulisce la tela togliendo tutti gli elementi disegnati
