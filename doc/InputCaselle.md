@@ -37,7 +37,7 @@ Nell'esempio sopra il widget dovrebbe essere simile a questo:
 Prende il nome di uno dei parametri come argomento e restituisce il valore
 inserito nella `tkinter.Entry` associata al parametro indicato. Nell'esempio
 sopra, per prendere il valore del parametro `a` si può scrivere
-`param.valore('a')`.
+`param.valore('a')`. Se il nome non esiste questo metodo restituisce `None`.
 
 ### `validi()`
 

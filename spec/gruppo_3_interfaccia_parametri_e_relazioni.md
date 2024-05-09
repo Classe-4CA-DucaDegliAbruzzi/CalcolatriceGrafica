@@ -78,7 +78,7 @@ l'overriding richiamando con `super` l'`__init__` della classe base.
 
 Questa classe deve creare un widget nel formato
 
-![Esempio input caselle](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/esempio_input_funzione.png)
+![Esempio input funzione](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/esempio_input_funzione.png)
 
 in cui `x` deve essere sostituita con il nome passato al costruttore. Nella
 casella di testo viene scritta la funzione che poi deve essere passata a
