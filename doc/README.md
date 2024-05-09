@@ -6,8 +6,8 @@
 
 - [x] [`Applicazione` (gruppo 1)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/Applicazione.md)
 - [x] [`BaseGrafico` (gruppo 4)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/BaseGrafico.md)
-- [ ] [`BaseGraficoFunzioneX` (gruppo 4)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/BaseGraficoFunzioneX.md)
-- [ ] [`BaseGraficoFunzioneY` (gruppo 4)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/BaseGraficoFunzioneY.md)
+- [x] [`BaseGraficoFunzioneX` (gruppo 4)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/BaseGraficoFunzioneX.md)
+- [x] [`BaseGraficoFunzioneY` (gruppo 4)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/BaseGraficoFunzioneY.md)
 - [x] [`BaseInputParametri` (gruppo 3)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/BaseInputParametri.md)
 - [x] [`Circonferenza` (gruppo 3)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/Circonferenza.md)
 - [x] [`Coseno` (gruppo 4)](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/doc/Coseno.md)
