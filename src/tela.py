@@ -16,12 +16,12 @@ class Tela:
     
     def x_tela_a_x_piano(self,x_tela):
         pass
-        
+
     def y_tela_a_y_piano(self,y_tela):
         pass
     
     def x_piano_a_x_tela(self,x_piano):
-        pass
+        return (x_piano-self.range_x[0]*self.w())/(self.range_x[1]-self.range_x[0])
      
     def y_piano_a_y_tela(self,y_piano):
         pass
