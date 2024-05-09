@@ -12,6 +12,10 @@ Potete trovare le specifiche nella cartella `spec/`.
 - Gruppo 4: Emma Rossi
 - Gruppo 5: Davide Taffarello
 
+## Diagramma classi
+
+![Diagramma classi](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/diagramma_classi.png)
+
 ## Codice
 
 Mettere il codice sorgente in `src/`, non modificare `main.py` eccetto per
