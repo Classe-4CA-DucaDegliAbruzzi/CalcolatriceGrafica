@@ -57,13 +57,13 @@ metodo non prende argomenti.
 
 ## Metodi
 
-### `w`
+### `w()`
 
 Restituisce la larghezza in pixel della `Tela`, non prende argomenti. Questo
 valore dipende dalla `tkinter.Canvas` passata al costruttore. Questo metodo non
 prende argomenti.
 
-### `h`
+### `h()`
 
 Restituisce l'altezza in pixel della `Tela`, non prende argomenti. Questo valore
 dipende dalla `tkinter.Canvas` passata al costruttore.
