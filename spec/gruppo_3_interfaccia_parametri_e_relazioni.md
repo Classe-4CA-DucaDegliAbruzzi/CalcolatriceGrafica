@@ -34,6 +34,8 @@ Il costruttore non è astratto e prende un unico argomento che è una stringa.
 - `validi()`: nelle sottoclassi restituisce `True` se tutti i valori associati
   ai parametri sono validi, se anche solo uno non è valido restituisce `False`
 
+---
+
 ### Specifiche `InputCaselle`
 
 Creare una classe `InputCaselle` che eredita da `BaseInputParametri` e quindi
@@ -62,6 +64,8 @@ essere
   parametro di cui restituire il valore
 - `validi()` deve controllare che all'interno delle caselle di testo associate
   ai parametri ci siano numeri validi.
+
+---
 
 ### Specifiche `InputFunzione`
 
@@ -102,8 +106,9 @@ di testo cambia e di salvare la funzione corrente in un attributo.
 Creare delle sottoclassi che derivano da
 [`BaseGrafico`](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/spec/gruppo_4_grafico_base_e_funzioni.md#specifiche-basegrafico)
 e che implementano i metodi astratti per disegnare circonferenze, ellissi e
-iperboli. Queste classi sono chiamate rispettivamente `Circonferenza`, `Ellisse`
-e `Iperbole`.
+iperboli. Queste classi sono chiamate rispettivamente `Circonferenza`,
+`Ellisse`, `IperboleTipo1` (che ha i rami che intersecano sempre l'asse x) e
+`IperboleTipo2` (che ha i rami che intersecano sempre l'asse y).
 
 ## Esempio di utilizzo
 

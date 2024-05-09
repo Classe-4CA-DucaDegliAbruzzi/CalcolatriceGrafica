@@ -38,7 +38,8 @@ seguenti:
 
 - `Circonferenza` (gruppo 3)
 - `Ellisse` (gruppo 3)
-- `Iperbole` (gruppo 3)
+- `IperboleTipo1` (gruppo 3)
+- `IperboleTipo2` (gruppo 3)
 - `Retta` (gruppo 4)
 - `Seno` (gruppo 4)
 - `Coseno` (gruppo 4)

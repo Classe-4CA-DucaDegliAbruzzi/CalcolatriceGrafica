@@ -30,6 +30,8 @@ Prende un solo parametro: una tela, di tipo
   sovrascritto dalle sottoclassi
 - `disegna()`: un metodo che disegna la funzione sulla `tela`
 
+---
+
 ### Specifiche `BaseGraficoFunzioneX` e `BaseGraficoFunzioneY`
 
 Creare due classi astratte `BaseGraficoFunzioneX` e  `BaseGraficoFunzioneY` che
