@@ -12,7 +12,7 @@ creazione dei grafici di cerchi, ellissi e iperboli.
 Creare una classe astratta `BaseInputParametri` che definisce i metodi descritti
 in seguito.
 
-#### Costruttore
+#### Costruttore (`__init__`)
 
 Il costruttore non è astratto e prende un unico argomento che è una stringa.
 
@@ -39,7 +39,7 @@ Il costruttore non è astratto e prende un unico argomento che è una stringa.
 Creare una classe `InputCaselle` che eredita da `BaseInputParametri` e quindi
 deve implementare i metodi astratti.
 
-#### Costruttore
+#### Costruttore (`__init__`)
 
 Il costruttore interpreta `fmt` in modo che i nomi dei parametri siano in mezzo
 a segni di dollaro. Serve fare l'overriding richiamando con `super` l'`__init__`
@@ -68,7 +68,7 @@ essere
 Creare una classe `InputFunzione` che eredita da `BaseInputParametri` e quindi
 deve implementare i metodi astratti.
 
-#### Costruttore
+#### Costruttore (`__init__`)
 
 Interpreta `fmt` come il nome della variabile indipendente della funzione, ad
 esempio per `f(x)` è `x`, invece per `f(y)` è `y`. Anche qui è necessario
@@ -80,14 +80,13 @@ Questa classe deve creare un widget nel formato
 
 ![Esempio input caselle](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/esempio_input_funzione.png)
 
-
 in cui `x` deve essere sostituita con il nome passato al costruttore. Nella
 casella di testo viene scritta la funzione che poi deve essere passata a
 [`interpreta_funzione`](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/spec/gruppo_5_interpretazione_funzioni.md#specifiche-interpreta_funzione).
 
 #### Metodi
 
-- `lista_nomi()` restituisce una stringa vuota
+- `lista_nomi()` restituisce una lista vuota
 - `crea_widget(master)` restituisce un widget nella forma indicata
 - `valore(x)` prende come argomento il numero della variabile indipendente e
   restituisce il valore calcolato dalla funzione interpretata oppure `None` se
@@ -102,8 +101,9 @@ di testo cambia e di salvare la funzione corrente in un attributo.
 
 Creare delle sottoclassi che derivano da
 [`BaseGrafico`](https://github.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/blob/main/spec/gruppo_4_grafico_base_e_funzioni.md#specifiche-basegrafico)
-e che implementano i
-metodi astratti per disegnare cerchi, ellissi e iperboli.
+e che implementano i metodi astratti per disegnare circonferenze, ellissi e
+iperboli. Queste classi sono chiamate rispettivamente `Circonferenza`, `Ellisse`
+e `Iperbole`.
 
 ## Esempio di utilizzo
 

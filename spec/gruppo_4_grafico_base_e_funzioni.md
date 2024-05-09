@@ -12,7 +12,7 @@ funzioni e le funzioni che hanno parametri particolari.
 Creare una classe astratta `BaseGrafico` che definisca i metodi descritti in
 seguito.
 
-#### Costruttore
+#### Costruttore (`__init__`)
 
 Il costruttore non è astratto e non deve essere modificato dalle sottoclassi.
 Prende un solo parametro: una tela, di tipo
@@ -60,6 +60,17 @@ Scrivere `(ABC, BaseGrafico)` risulterebbe in un errore.
   `BaseGraficoFunzioneX` va da un estremo all'altro dell'asse x e calcola la y
   con la funzione, invece `BaseGraficoFunzioneY` va da un estremo all'altro
   dell'asse y e calcola il valore della x con la funzione
+
+### Specifiche funzioni e funzioni con parametri particolari
+
+Creare le seguenti classi:
+
+- la classe `Retta` che disegna il grafico dell'equazione `y = mx + q`
+- la classe `Seno` che disegna il grafico dell'equazione `y = a * sin(w * x)`
+- la classe `Coseno` che disegna il grafico dell'equazione `y = a * cos(w * x)`
+- la classe `Parabola` che disegna il grafico dell'equazione `y = ax^2 + bx + c`
+- la classe `FunzioneX` che disegna il grafico di una funzione `f(x)` inserita dall'utente
+- la classe `FunzioneY` che disegna il grafico di una funzione `f(y)` inserita dall'utente
 
 ## Esempio di utilizzo
 
