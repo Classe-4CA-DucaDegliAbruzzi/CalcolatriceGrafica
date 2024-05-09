@@ -10,12 +10,12 @@ La parte dell'interfaccia in cui vengono disegnati i grafici.
 
 Creare una classe `Tela` con i seguenti requisiti.
 
-### Costruttore:
+### Costruttore (`__init__`)
 
 - il costruttore deve accettare un solo argomento di tipo
   [`Canvas`](https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/canvas.html)
 
-### Attributi:
+### Attributi
 
 - `range_x`: una **tupla di due numeri (`float` o `int`)**, il primo è il valore
   di x all'estremo sinistro della tela e il secondo è il valore all'estremo
@@ -29,7 +29,7 @@ Creare una classe `Tela` con i seguenti requisiti.
 - `spessore`: lo spessore della linea con cui sono tracciate le figure, è di
   tipo `int`
 
-### Metodi:
+### Metodi
 
 **Nota**: per come funzionano le coordinate della tela e le coordinate del piano
 vedi sotto.
@@ -61,7 +61,7 @@ vedi sotto.
 - `disegna_sfondo()`: disegna le linee del piano sulla `Canvas`
   - è a discrezione del gruppo come queste cambiano al cambiare di `range_x` e
     `range_y`
-  - *non devono* seguire `colore` e `spessore`
+  - *non seguono* `colore` e `spessore`
 - `disegna_numeri()`: disegna i numeri delle linee disegnate con
   `disegna_sfondo`
 - `pulisci()`: ripulisce la tela togliendo tutti gli elementi disegnati
