@@ -6,7 +6,7 @@ Non prende argomenti, l'istanza è creata con `Applicazione()`
 
 ## Metodi
 
-### `run`
+### `run()`
 
 Questo metodo apre l'applicazione. Non prende argomenti e non restituisce un
 valore.
