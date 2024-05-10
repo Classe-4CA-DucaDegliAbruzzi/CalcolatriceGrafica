@@ -2,7 +2,7 @@
 
 ## Descrizione
 
-È una sottoclasse di `BaseInputParametri` che permette all'utente di inserire
+È una sottoclasse di [`BaseInputParametri`](BaseInputParametri.md) che permette all'utente di inserire
 una funzione qualsiasi.
 
 ## Interpretazione di `fmt`
@@ -50,8 +50,8 @@ input_funzione = InputFunzione("x")
 print(input_funzione.lista_nomi())  # []
 
 # Facciamo finta che ci sia scritto 'x +'
-# qui quando si chiama `interpreta_funzione` viene restituito un
-# `ErroreInterpretazione`
+# qui quando si chiama [`interpreta_funzione`](interpreta_funzione.md) viene restituito un
+# [`ErroreInterpretazione`](ErroreInterpretazione.md)
 print(input_funzione.validi())  # False
 print(input_funzione.valore(5))  # None
 print(input_funzione.valore('5'))  # None
