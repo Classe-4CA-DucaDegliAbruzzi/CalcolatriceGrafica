@@ -25,6 +25,7 @@ class BaseInputParametri(ABC):
 class InputCaselle(BaseInputParametri):
     def __init__(self, fmt):
         super().__init__(fmt)
+        self.parti=fmt.split($)
 
     def lista_nomi(self):
 
