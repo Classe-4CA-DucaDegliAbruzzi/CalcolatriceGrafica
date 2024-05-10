@@ -32,9 +32,7 @@ dentro a classi e funzioni non è eseguito se non chiamato esplicitamente
 
 ### Stile
 
-Utilizzare nomi di variabili descrittivi eccetto in contesti matematici:[^1]
-
-[^1]: motivo: rende il codice più leggibile e semplice da interpretare
+Utilizzare nomi di variabili descrittivi eccetto in contesti matematici:
 
 ```python
 ❌
@@ -47,9 +45,7 @@ msg_errore = "Errore"
 y = a * x**2 + b * x + c
 ```
 
-Utilizzare un'indentazione di quattro spazi (e *non* tabulazioni):[^2]
-
-[^2]: motivo: evita errori di indentazione
+Utilizzare un'indentazione di quattro spazi (e *non* tabulazioni):
 
 ```python
 ❌
@@ -62,10 +58,7 @@ def funzione():
 ```
 
 Per eseguire del codice all'interno di un file che state scrivendo e che non
-è `main.py`, il codice deve essere messo dentro `if __name__ == "__main__"`:[^3]
-
-[^3]: motivo: serve eseguire codice per testare, non deve essere eseguito quando
-il file è semplicemente importato.
+è `main.py`, il codice deve essere messo dentro `if __name__ == "__main__"`:
 
 ```python
 ❌
@@ -77,11 +70,7 @@ if __name__ == "__main__":
 ```
 
 I nomi di classi, funzioni e attributi devono essere esattamente quelli
-descritti nelle specifiche:[^4]
-
-[^4]: motivo: le specifiche servono a tutti per utilizzare parti di codice che
-non hanno scritto, utilizzare nomi diversi renderebbe inutili le specifiche a
-questo scopo.
+descritti nelle specifiche:
 
 ```python
 ❌
@@ -99,4 +88,20 @@ class BaseGrafico(ABC):
 class InputFunzione:
     def validi(self):
         ...
+```
+
+Controllare il tipo di un oggetto con `isinstance` e non con `type(x) == ...`:
+
+```python
+❌
+if type(funzione) == ErroreInterpretazione:
+    ...
+if type(funzione) == NodoBase:
+    ...
+
+✅
+if isinstance(funzione, ErroreInterpretazione):
+    ...
+if isinstance(funzione, NodoBase):
+    ...
 ```

@@ -4,7 +4,7 @@
 
 La classe astratta da cui ereditano le classi responsabili di gestire i
 parametri per le funzioni disegnate. Le classi che derivano da questa sono
-utilizzate nel metodo `crea_param` delle sottoclassi di `BaseGrafico`.
+utilizzate nel metodo `crea_param` delle sottoclassi di [`BaseGrafico`](BaseGrafico.md).
 
 ## Costruttore (`__init__`)
 
