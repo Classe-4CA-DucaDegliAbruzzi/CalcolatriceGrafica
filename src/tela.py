@@ -9,10 +9,10 @@ class Tela:
         self.spessore = 1
 
     def w(self):
-        return self.canvas.cget("width") 
+        return int(self.canvas.cget("width"))
 
     def h(self):
-        return self.canvas.cget("height")
+        return int(self.canvas.cget("height"))
     
     def x_tela_a_x_piano(self,x_tela):
         pass
@@ -73,25 +73,8 @@ if __name__ == "__main__":
     y2 = tela.y_piano_a_y_tela(1)
     tela.linea((100, 140), (90, 160))
     tela.ellisse((100,200),(300,400))
-
-    # disegna i numeri delle linee
-    tela.disegna_numeri()
-    root.mainloop()
-
-if __name__ == "__main__":
-    import tkinter as tk
-
-    root = tk.Tk()
-    canvas = tk.Canvas(root, width=500, height=500)
-    canvas.grid(row=0, column=0)
-    tela = Tela(canvas)
-
-    tela.colore = "#FF0000"  # rosso
-    tela.spessore = 2
-    tela.range_x = (-5, 5)
-    tela.range_y = (-5, 5)
-
-    # disegna le linee di sfondo
+    
+     # disegna le linee di sfondo
     tela.disegna_sfondo()
 
     tela.linee([(50, 50), (100, 150), (200, 100), (300, 200)])
@@ -99,3 +82,5 @@ if __name__ == "__main__":
     # disegna i numeri delle linee
     tela.disegna_numeri()
     root.mainloop()
+
+   
