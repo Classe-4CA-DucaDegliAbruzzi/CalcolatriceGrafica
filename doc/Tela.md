@@ -12,7 +12,7 @@ L'istanza è creata con `Tela(canvas)`.
 
 ## Coordinate del piano VS coordinate della tela
 
-![Coordinate](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/coordinate.png)
+![Coordinate](../media/coordinate.png)
 
 Le coordinate della tela hanno il punto `(0, 0)` in alto a sinistra. La x cresce
 da sinistra verso destra (come nel piano cartesiano) e la y dall'alto verso il
@@ -98,7 +98,7 @@ di `y_piano_a_y_tela`.
 
 ### `linea(p1, p2)`
 
-![Linea](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/linea.png)
+![Linea](../media/linea.png)
 
 Disegna un segmento sulla tela. Prende i due estremi come argomenti che sono
 tuple o liste di lunghezza 2 contenenti numeri interi; i punti sono espressi
@@ -113,7 +113,7 @@ Questo metodo non restituisce un valore.
 
 ### `linee(punti)`
 
-![Linee](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/linee.png)
+![Linee](../media/linee.png)
 
 Disegna vari segmenti connessi agli estremi. Prende come argomento una lista di
 punti; i punti sono espressi come coordinate della tela. Se ad esempio la lista
@@ -128,7 +128,7 @@ Questo metodo non restituisce un valore.
 
 ### `ellisse(p1, p2)`
 
-![Ellisse](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/ellisse.png)
+![Ellisse](../media/ellisse.png)
 
 Disegna l'ellisse inscritta nel rettangolo definito da `p1` e `p2`; i punti sono
 espressi come coordinate della tela. `p1` è l'angolo in alto a sinistra del

@@ -6,7 +6,7 @@ Una classe astratta da cui ereditano classi che disegnano i grafici.
 
 ## Costruttore (`__init__`)
 
-Il costruttore prende un solo argomento di tipo `Tela`. Questo argomento è poi
+Il costruttore prende un solo argomento di tipo [`Tela`](Tela.md). Questo argomento è poi
 accessibile attraverso l'attributo `tela`. Questa è la tela dove verrà disegnata
 la funzione.
 
@@ -22,7 +22,7 @@ parametri inseriti dall'utente attraverso l'interfaccia grafica.
 
 Questa è la tela passata al costruttore dove la sottoclasse di `BaseGrafico`
 deve disegnare l'equazione con i metodi `linea`, `linee` e `ellisse`. Vedere
-la documentazione di `Tela` per più informazioni.
+la documentazione di [`Tela`](Tela.md) per più informazioni.
 
 ## Metodi astratti
 
@@ -33,7 +33,7 @@ accedere all'input dei parametri.
 
 Questo metodo è responsabile di restituire una nuova istanza dell'input dei
 parametri utilizzato dalla classe per disegnare la funzione. Vedere la
-documentazione di `InputCaselle` e `InputFunzione` per più informazioni.
+documentazione di [`InputCaselle`](InputCaselle.md) e [`InputFunzione`](InputFunzione.md) per più informazioni.
 
 Questo metodo non prende argomenti.
 

@@ -2,7 +2,7 @@
 
 ## Descrizione
 
-È una sottoclasse di `BaseInputParametri` che permette inserire i valori
+È una sottoclasse di [`BaseInputParametri`](BaseInputParametri.md) che permette inserire i valori
 definendo i parametri in un'equazione predefinita.
 
 ## Interpretazione di `fmt`
