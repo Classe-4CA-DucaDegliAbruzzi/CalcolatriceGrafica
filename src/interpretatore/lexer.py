@@ -23,7 +23,16 @@ class ErroreInterpretazione(ErroreInterpretazioneEsportato):
 class TipoToken(Enum):
     PIU = auto()
     MENO = auto()
+    PER = auto()
+    DIVISO = auto()
+    POTENZA = auto()
     NUMERO = auto()
+    IDENT = auto()
+    PAREN_SX = auto()
+    PAREN_DX = auto()
+    TRATTINO_BASSO = auto()
+
+    FINE_FUNZIONE = auto()
 
     # per aggiungere un tipo di token scrivere NOME = auto()
 
@@ -42,3 +51,13 @@ class Token:
         if self.valore is None:
             return f"Token({self.tipo})"
         return f"Token({self.tipo}, {self.valore!r})"
+
+    def __eq__(self, other):
+        if isinstance(other, TipoToken):
+            return self.tipo == other
+        elif isinstance(other, tuple) or isinstance(other, list):
+            return self.tipo == other[0] and self.valore == other[1]
+        elif isinstance(other, Token):
+            return self.tipo == other.tipo and self.valore == other.valore
+        else:
+            return NotImplemented
