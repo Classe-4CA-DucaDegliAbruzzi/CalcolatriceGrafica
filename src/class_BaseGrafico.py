@@ -20,11 +20,21 @@ class BaseGrafico(abc.ABC):
     @abc.abstractmethod
     def disegna(): 
         pass
-class BaseGraficoFunzioneX (BaseGrafico, ABC):
-    def funzione(self, x, parametri):
-    def disegna(): 
-        ................
-class BaseGraficoFunzioneY (BaseGrafico, ABC):
+class BaseGraficoFunzioneX (BaseGrafico, abc.ABC):
+    def __init__(self, tela, parametri, x):
+        super.__init__(tela)
+        self.parametri = parametri 
+        self.x = x
+    @abc.abstractmethod
+    def crea_param():
+        pass
+    @abc.abstractmethod
+    def funzione(self, x, parametri): 
+        pass 
+    def disegna(self):
+        pass 
+
+class BaseGraficoFunzioneY (BaseGrafico, abc.ABC):
     def funzione(self, x, parametri):
     def disegna(): 
         ................
