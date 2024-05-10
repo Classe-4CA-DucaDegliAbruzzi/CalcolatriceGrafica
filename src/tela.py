@@ -30,7 +30,11 @@ class Tela:
         self.canvas.create_line(p1[0],p1[1],p2[0],p2[1],width=self.spessore,fill=self.colore)
 
     def linee(self,punti):
-        pass
+        # Disegna le linee connesse dai punti
+        for i in range(len(punti) - 1):
+            x1, y1 = punti[i]
+            x2, y2 = punti[i + 1]
+            self.canvas.create_line(x1, y1, x2, y2)
     
     def ellisse(self,p1, p2):
         self.canvas.create_oval(p1[0],p1[1],p2[0],p2[1],width=self.spessore,outline=self.colore)
@@ -69,6 +73,28 @@ if __name__ == "__main__":
     y2 = tela.y_piano_a_y_tela(1)
     tela.linea((100, 140), (90, 160))
     tela.ellisse((100,200),(300,400))
+
+    # disegna i numeri delle linee
+    tela.disegna_numeri()
+    root.mainloop()
+
+if __name__ == "__main__":
+    import tkinter as tk
+
+    root = tk.Tk()
+    canvas = tk.Canvas(root, width=500, height=500)
+    canvas.grid(row=0, column=0)
+    tela = Tela(canvas)
+
+    tela.colore = "#FF0000"  # rosso
+    tela.spessore = 2
+    tela.range_x = (-5, 5)
+    tela.range_y = (-5, 5)
+
+    # disegna le linee di sfondo
+    tela.disegna_sfondo()
+
+    tela.linee([(50, 50), (100, 150), (200, 100), (300, 200)])
 
     # disegna i numeri delle linee
     tela.disegna_numeri()
