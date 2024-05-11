@@ -15,7 +15,7 @@ class Tela:
         return int(self.canvas.cget("height"))
     
     def x_tela_a_x_piano(self,x_tela):
-        pass
+        return 
 
     def y_tela_a_y_piano(self,y_tela):
         return (((y_tela-h)*(self.range_y[1]-self.range_y[0]))/(0-self.h()))+self.h()
