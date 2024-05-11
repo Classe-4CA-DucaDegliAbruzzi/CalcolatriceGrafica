@@ -21,10 +21,10 @@ class Tela:
         pass
     
     def x_piano_a_x_tela(self,x_piano):
-        return (x_piano-self.range_x[0]*self.w())/(self.range_x[1]-self.range_x[0])
+        return (x_piano-self.range_x[0])*self.w()/(self.range_x[1]-self.range_x[0])
      
     def y_piano_a_y_tela(self,y_piano):
-        pass
+        return ((y_piano-self.range_y[0])/(self.range_y[1]-self.range_y[0]))*(0-self.h())+self.h()
     
     def linea(self,p1, p2):
         self.canvas.create_line(p1[0],p1[1],p2[0],p2[1],width=self.spessore,fill=self.colore)
@@ -69,16 +69,16 @@ if __name__ == "__main__":
     tela.disegna_sfondo()
 
     # disegna un segmento da (-3, 2) a (4, 1)
-    x1 = tela.x_piano_a_x_tela(-3)
-    y1 = tela.y_piano_a_y_tela(2)
+    x1 = tela.x_piano_a_x_tela(0)
+    y1 = tela.y_piano_a_y_tela(0)
 
-    x2 = tela.x_piano_a_x_tela(4)
-    y2 = tela.y_piano_a_y_tela(1)
-    tela.linea((100, 140), (90, 160))
+    x2 = tela.x_piano_a_x_tela(5)
+    y2 = tela.y_piano_a_y_tela(5)
+    tela.linea((x1, y1), (x2, y2))
     tela.ellisse((100,200),(300,400))
     
      # disegna le linee di sfondo
-    tela.disegna_sfondo()
+    tela.disegna_sfondo()   #più difficile
 
     tela.linee([(50, 50), (100, 150), (200, 100), (300, 200)])
 
