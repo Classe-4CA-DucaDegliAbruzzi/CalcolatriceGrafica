@@ -18,7 +18,7 @@ class Tela:
         pass
 
     def y_tela_a_y_piano(self,y_tela):
-        pass
+        return (((y_tela-h)*(self.range_y[1]-self.range_y[0]))/(0-self.h()))+self.h()
     
     def x_piano_a_x_tela(self,x_piano):
         return (x_piano-self.range_x[0])*self.w()/(self.range_x[1]-self.range_x[0])
