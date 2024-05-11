@@ -34,7 +34,7 @@ class Tela:
         for i in range(len(punti) - 1):
             x1, y1 = punti[i]
             x2, y2 = punti[i + 1]
-            self.canvas.create_line(x1, y1, x2, y2)
+            self.canvas.create_line(x1, y1, x2, y2,width=self.spessore,fill=self.colore)
     
     def ellisse(self,p1, p2):
         self.canvas.create_oval(p1[0],p1[1],p2[0],p2[1],width=self.spessore,outline=self.colore)
