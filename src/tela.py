@@ -46,7 +46,7 @@ class Tela:
         pass
     
     def pulisci(self):
-        pass
+        self.canvas.delete("all")
 
 
 if __name__ == "__main__":
@@ -56,6 +56,9 @@ if __name__ == "__main__":
     canvas = tk.Canvas(root, width=500, height=500)
     canvas.grid(column=0,row=0)
     tela = Tela(canvas)
+
+    pulsante_pulisci = tk.Button(root, text="Pulisci", command=tela.pulisci)
+    pulsante_pulisci.grid(row=1, column=0)
 
     tela.colore = "#FF0000"  # rosso
     tela.spessore = 2
