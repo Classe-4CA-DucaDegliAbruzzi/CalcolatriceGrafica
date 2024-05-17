@@ -16,7 +16,7 @@ literal: num_literal | 'pi' | 'e' | 'x' | func_call
 base_arg_func_call: base_arg_func_name ('_' value)? call_argument
 one_arg_func_call: one_arg_func_name call_argument
 base_arg_func_name: 'rt' | 'log'
-call_argument: '(' signed_expr ')' | implied_mul
+call_argument: '(' signed_expr ')' | '[' signed_expr ']' | '{' signed_expr '}' | implied_mul
 one_arg_func_name: 'sin' | 'cos' | 'tan' | 'arcsin' | 'arccos' | 'arctan' | 'sqrt' | 'ln'
 num_literal: (0-9)+ ['.' (0-9)+]
 """
@@ -41,6 +41,47 @@ FUNZIONI = {
 }
 
 FUNZIONI_CON_BASE = {'rt', 'log'}
+
+PARENS = {
+    TipoToken.PAREN_TONDA_DX: TipoToken.PAREN_TONDA_SX,
+    TipoToken.PAREN_QUADRA_DX: TipoToken.PAREN_QUADRA_SX,
+    TipoToken.PAREN_GRAFFA_DX: TipoToken.PAREN_GRAFFA_SX
+}
+
+
+def tok_a_simbolo(tok):
+    if tok == TipoToken.PIU:
+        return "+"
+    elif tok == TipoToken.MENO:
+        return "-"
+    elif tok == TipoToken.PER:
+        return "*"
+    elif tok == TipoToken.DIVISO:
+        return "/"
+    elif tok == TipoToken.POTENZA:
+        return "^"
+    elif tok == TipoToken.NUMERO:
+        return f"numero {tok.valore}"
+    elif tok == TipoToken.IDENT:
+        return f"{tok.valore!r}"
+    elif tok == TipoToken.PAREN_TONDA_SX:
+        return "("
+    elif tok == TipoToken.PAREN_TONDA_DX:
+        return ")"
+    elif tok == TipoToken.PAREN_QUADRA_SX:
+        return "["
+    elif tok == TipoToken.PAREN_QUADRA_DX:
+        return "]"
+    elif tok == TipoToken.PAREN_GRAFFA_SX:
+        return "{"
+    elif tok == TipoToken.PAREN_GRAFFA_DX:
+        return "}"
+    elif tok == TipoToken.TRATTINO_BASSO:
+        return "_"
+    elif tok == TipoToken.FINE_FUNZIONE:
+        return "fine funzione"
+    else:
+        return str(tok)
 
 
 class NodoBase(ABC):
@@ -249,11 +290,13 @@ class Parser:
             return value_node
 
     def value(self):
-        if self.tok == TipoToken.PAREN_SX:
+        if self.tok in PARENS.keys():
+            paren = self.tok.tipo
             self.avanti()
             expr = self.expr(True)
-            if self.tok != TipoToken.PAREN_DX:
-                return ErroreInterpretazione(f"prevista ')'")
+            if self.tok != PARENS[paren]:
+                return ErroreInterpretazione(f"prevista '{tok_a_simbolo(PARENS[paren])}',"
+                                             " trovato '{tok_a_simbolo(self.tok)}'")
             self.avanti()
             return expr
         return self.literal()
@@ -294,10 +337,10 @@ class Parser:
                 return argomento
             return NodoFunzione(func, argomento)
         else:
-            return ErroreInterpretazione(f"previsto un valore")
+            return ErroreInterpretazione(f"previsto un valore, trovato '{tok_a_simbolo(self.tok)}'")
 
     def func_arg(self):
-        if self.tok == TipoToken.PAREN_SX:
+        if self.tok in PARENS.keys():
             return self.value()
         else:
             return self.implied_mul(False)
