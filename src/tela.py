@@ -1,5 +1,3 @@
-import tkinter as t
-
 class Tela:
     def __init__(self, canvas):
         self.canvas = canvas
@@ -78,12 +76,10 @@ if __name__ == "__main__":
     tela.ellisse((100,200),(300,400))
     
      # disegna le linee di sfondo
-    tela.disegna_sfondo()   #più difficile
+    tela.disegna_sfondo()
 
     tela.linee([(50, 50), (100, 150), (200, 100), (300, 200)])
 
     # disegna i numeri delle linee
     tela.disegna_numeri()
     root.mainloop()
-
-   
