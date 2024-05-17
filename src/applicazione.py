@@ -1,8 +1,8 @@
 from tkinter import * #type: ignore
 from tkinter import ttk
 
-class Application:
-    def main(self):
+class Applicazione:
+    def run(self):
         #win.destroy()
         r = Tk()
         r.title("calcolatrice")
@@ -112,9 +112,6 @@ class Application:
 
 
         r.mainloop()
-
-App = Application()
-App.main()
 
 '''
 def open_calc():
