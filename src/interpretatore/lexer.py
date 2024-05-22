@@ -38,8 +38,6 @@ class TipoToken(Enum):
 
     FINE_FUNZIONE = auto()
 
-    # per aggiungere un tipo di token scrivere NOME = auto()
-
 
 class Token:
     # l'attributo valore è utile quando si hanno token ad esempio `NUMERO` con
@@ -65,3 +63,11 @@ class Token:
             return self.tipo == other.tipo and self.valore == other.valore
         else:
             return NotImplemented
+
+
+def crea_token(lista_parti):
+    return []
+
+
+def traduttore(stringa):
+    return []

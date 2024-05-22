@@ -23,7 +23,7 @@ num_literal: (0-9)+ ['.' (0-9)+]
 
 from abc import ABC, abstractmethod
 import math
-from .lexer import ErroreInterpretazione, TipoToken, Token
+from .lexer import ErroreInterpretazione, TipoToken, Token, crea_token, traduttore
 
 FUNZIONI = {
     'sin': math.sin,
@@ -46,6 +46,21 @@ PARENS = {
     TipoToken.PAREN_TONDA_DX: TipoToken.PAREN_TONDA_SX,
     TipoToken.PAREN_QUADRA_DX: TipoToken.PAREN_QUADRA_SX,
     TipoToken.PAREN_GRAFFA_DX: TipoToken.PAREN_GRAFFA_SX
+}
+
+SIMBOLO_A_TIPO_TOKEN = {
+    "+": TipoToken.PIU,
+    "-": TipoToken.MENO,
+    "*": TipoToken.PER,
+    "/": TipoToken.DIVISO,
+    "^": TipoToken.POTENZA,
+    "(": TipoToken.PAREN_TONDA_SX,
+    ")": TipoToken.PAREN_TONDA_DX,
+    "[": TipoToken.PAREN_QUADRA_SX,
+    "]": TipoToken.PAREN_QUADRA_DX,
+    "{": TipoToken.PAREN_GRAFFA_SX,
+    "}": TipoToken.PAREN_GRAFFA_DX,
+    "_": TipoToken.TRATTINO_BASSO
 }
 
 
@@ -346,7 +361,60 @@ class Parser:
             return self.implied_mul(False)
 
 
-def interpreta_funzione(input_utente, var_ind):
+def crea_token_temp(lista_parti):
     lista_token = []
+
+    for parte in lista_parti:
+        if parte.isalpha():
+            lista_token.append(Token(TipoToken.IDENT, parte))
+        elif isinstance(parte, int) or isinstance(parte, float):
+            lista_token.append(Token(TipoToken.NUMERO, parte))
+        else:
+            tipo = SIMBOLO_A_TIPO_TOKEN.get(parte)
+            if tipo is None:
+                return ErroreInterpretazione(f"simbolo sconosciuto '{parte}'")
+            lista_token.append(Token(tipo))
+
+    lista_token.append(Token(TipoToken.FINE_FUNZIONE))
+    return lista_token
+
+
+def traduttore_temp(input_utente):
+    lista_tradotta = []
+    ident = ""
+    num = ""
+
+    for c in input_utente:
+        if c.isalpha():
+            ident += c
+        elif c.isdigit():
+            num += c
+            if num.count(".") > 1:
+                return ErroreInterpretazione("più di un punto decimale nel numero")
+        elif c not in "+-*/^()[]{}_ ":
+            return ErroreInterpretazione(f"carattere '{c}' non riconosciuto")
+
+        if not c.isalpha() and ident:
+            lista_tradotta.append(ident)
+            ident = ""
+        elif not c.isdigit() and num and c != ".":
+            if num[0] == ".":
+                return ErroreInterpretazione("nessuna cifra prima del punto decimale")
+            if num[-1] == ".":
+                return ErroreInterpretazione("nessuna cifra dopo il punto decimale")
+            lista_tradotta.append(float(num))
+        elif c in "+-*/^()[]{}_":
+            lista_tradotta.append(c)
+
+    return lista_tradotta
+
+
+def interpreta_funzione(input_utente, var_ind):
+    lista_parti = traduttore(input_utente)
+    if isinstance(lista_parti, ErroreInterpretazione):
+        return lista_parti
+    lista_token = crea_token(lista_parti)
+    if isinstance(lista_token, ErroreInterpretazione):
+        return lista_token
     parser = Parser(lista_token, var_ind)
     return parser.interpreta()
