@@ -53,3 +53,30 @@ class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
             punto = (x_pixel, y_pixel)
             lista_punti.append(punto)
         self.tela.linee(lista_punti)
+
+
+if __name__ == "__main__":
+    import tkinter as tk
+    from tela_temp import Tela
+    from input_parametri_temp import InputCaselle
+
+
+    class GraficoSenzaParametri(BaseGraficoFunzioneX):
+        def crea_param(self):
+            return InputCaselle("")
+
+        def funzione(self, x, parametri):
+            return x * x  # disegna y = x^2
+
+
+    root = tk.Tk()
+
+    canvas = tk.Canvas(root, width=500, height=500)
+    canvas.grid(row=0, column=0)
+    tela_ = Tela(canvas)
+    grafico = GraficoSenzaParametri(tela_)
+
+    tela_.disegna_sfondo()
+    grafico.disegna()
+
+    root.mainloop()
