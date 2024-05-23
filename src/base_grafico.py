@@ -70,6 +70,33 @@ class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
                 punto = (x_pixel, y_pixel)
                 lista_punti.append(punto)
             self.tela.linee(lista_punti)
+    
+    #esempio parabola
+class Parabola(BaseGraficoFunzioneX):
+    def crea_param(self):
+        return InputCaselle("y = $a$x^2 + $b$x + $c$")
+
+    def funzione(self, x, parametri):
+        a = parametri["a"]
+        b = parametri["b"]
+        c = parametri["c"]
+        return a * x**2 + b * x + c
+
+   
+parabola = Parabola(tela)
+
+#esempio retta
+class Retta(BaseGraficoFunzioneX):
+    def crea_param(self):
+        return InputCaselle("y = mx + q")
+
+    def funzione(self, x, parametri):
+        m = parametri["m"]
+        q = parametri["q"]
+        return m* x + q
+
+   
+retta = Retta(tela)
 
 
 if __name__ == "__main__":
