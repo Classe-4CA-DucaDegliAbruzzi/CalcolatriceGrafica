@@ -24,7 +24,7 @@ class BaseGraficoFunzioneX(BaseGrafico, abc.ABC):
             y_piano = self.funzione(x_piano, {}) 
             y_pixel = self.tela.y_piano_a_y_tela(y_piano)
             punto = (x_pixel, y_pixel)
-            x += 0.00000000000000001
+            x_pixel += 0.00000000000000001
             lista_punti.append(punto)
         self.tela.linee(lista_punti)
 
