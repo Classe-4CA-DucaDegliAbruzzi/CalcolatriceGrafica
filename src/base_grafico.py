@@ -1,6 +1,6 @@
 import abc
 
-
+#fatto da Emma Rossi e Alessia Ciocan 
 class BaseGrafico(abc.ABC):
     def __init__(self, tela):
         self.tela = tela
