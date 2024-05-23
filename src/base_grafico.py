@@ -26,9 +26,10 @@ class BaseGraficoFunzioneX(BaseGrafico, abc.ABC):
         
 
     def disegna(self):
+        self.param.validi()
         lista_nomi = self.param.lista_nomi()
         dizionario = {} #questo dizionario associa i nome dei parametro al suo valore  
-        for nome in lista_nomi: 
+        for nome in lista_nomi:
             dizionario[nome] = self.param.valore(nome)
         
         lista_punti = []   
@@ -51,6 +52,7 @@ class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
         pass
 
     def disegna(self):
+        self.param.validi()
         lista_nomi = self.param.lista_nomi()
         dizionario = {} #questo dizionario associa i nome dei parametro al suo valore  
         for nome in lista_nomi: 

@@ -1,4 +1,6 @@
 import abc 
+#NB TUTTO QUELLO CHE E' SCRITTO QUI E' SBAGLIATO 
+# FARE RIFERIMENTO A BASE GRAFICO 
 class BaseGrafico(abc.ABC):
     def __init__(self, tela): 
         self.tela = tela  #è del gruppo 2 e io lo prendo, è un oggetto perché contiene dei valori 
