@@ -1,26 +1,32 @@
 from tkinter import * #type: ignore
 from tkinter import ttk
+import os
+from PIL import ImageTk, Image
 
-class Applicazione:
-    def run(self):
-        #win.destroy()
+folder_path = os.path.dirname(__file__)
+image_path = os.path.join(folder_path, 'button_finale.png')
+
+class Application:
+    def main(self):
+        win.destroy()
         r = Tk()
         r.title("calcolatrice")
-        r.configure(bg="antique white")
+        r.configure(bg="old lace")
         r.geometry('1000x750')
-       
+        
         r.columnconfigure(0, weight=1)
 
-       
-        a = Frame(r, bg='antique white', height=300, width=500)
+        
+        a = Frame(r, bg='old lace', height=300, width=500)
         a.grid(column=0, row=0)
-        b = Frame(r, bg='antique white', height=300, width=500)
+        b = Frame(r, bg='old lace', height=300, width=500)
         b.grid(column=1, row=0)
-       
-       
+        
+        
         funz = StringVar()
         funz_entry = Entry(a, textvariable=funz)
         funz_entry.place(x=122, y=180)
+        
 
         funz_da_selezionare = StringVar()
         tendina = ttk.Combobox(a, width=30, background="antique white", textvariable=funz_da_selezionare)
@@ -41,7 +47,7 @@ class Applicazione:
 
         Valorey_funzione = Label(b, text=' ', bg="antique white", fg="black", font="Arial")
         Valorey_funzione.place(x=120, y=175, width=50)
-       
+        
         r.columnconfigure(0, weight=0)
         c = Frame(r, bg="antique white", height=400, width=500)
         c.grid(row=1, column=0, columnspan=4)
@@ -65,24 +71,20 @@ class Applicazione:
         valore= IntVar()
         valore_entry = Entry(b, textvariable=valore)
         valore_entry.place(x=55, y=178, width=18)
-       
-       
+        
+        
 
         #Aggiorna
         def aggiorna():
             funz_entry.delete(first=0, last='end')
             funz_entry.focus()
             range_x1_entry.delete(first=0, last='end')
-            range_x1_entry.focus()
             range_x2_entry.delete(first=0, last='end')
-            range_x2_entry.focus()
             valore_entry.delete(first=0, last='end')
-            valore_entry.focus()
             #grafico.delete()
-            #grafico.focus()
 
-       
-        Clean = Button(b, text="Clean",font="Times 15", fg="black", bg="mediumorchid", command=aggiorna)
+        
+        Clean = Button(b, text="Clean",font="Times 15", fg="black", bg="medium sea green", command=aggiorna)
         Clean.place(x=40, y=55)
 
         #imposta
@@ -107,15 +109,20 @@ class Applicazione:
                 funz_entry.insert(0, "a*log[b](x)+c")
 
 
-        Imposta = Button(a,text="Set Up", font="Times 15", fg ="black" , bg = "mediumorchid",command=imposta)
+        Imposta = Button(a,text="Set Up", font="Times 15", fg ="black" , bg = "medium sea green",command=imposta)
         Imposta.place(x=310, y=55)
-
+        
+        
+        
 
         r.mainloop()
 
-'''
+App = Application()
+
+
+
 def open_calc():
-    main()
+    App.main()
 
 win= Tk()
 win.title("Calcolatrice_Grafica_4CA")
@@ -127,16 +134,14 @@ win.geometry("750x750")
 
 
 classe = Label(win, text="4 CA", font="Georgia 115", fg="maroon", bg="antique white")
-classe.place(x=250, y = 10)
+classe.place(x=215, y = 10)
 
 
-play_button=PhotoImage(file="button_finale.png")
+play_button= ImageTk.PhotoImage(Image.open(image_path))
 img_label= ttk.Label(image=play_button)
 button= Button(win, image=play_button, borderwidth=0, command=open_calc, cursor="pirate")
 button.place(x=275, y=200)
 
 
 win.mainloop()
-'''
-
 
