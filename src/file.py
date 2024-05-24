@@ -25,31 +25,26 @@ class BaseInputParametri(ABC):
 class InputCaselle(BaseInputParametri):
     def __init__(self, fmt):
         super().__init__(fmt)
-        self.dizionary = {}
+        self.parti = fmt.split('$')
+        self.dictionary = {}
+        for i in self.parti[1::2]:
+            self.dictionary[i]=None
 
     def lista_nomi(self):
-        return
+        return list(self.dictionary.keys())
 
     def crea_widget(self, master):
+        frame = t.Frame(master, padx=10, pady=10)
+        for i, parte in enumerate(self.parti):
+            if i %2 == 0:
+                label_input_sosa1 = t.Label(frame, text=parte)
+                label_input_sosa1.grid(row=0, column=i, sticky='w')
+            else:
+                entry_sosa1 = t.Entry(frame, width=8)
+                entry_sosa1.grid(row=0, column=i, padx=5,pady=5)
+                self.dictionary[parte]=entry_sosa1
+        return frame
         
-       frame1 = t.Frame(master, padx=10, pady=10)
-       frame1.pack()
-       label_input_sosa_y= t.Label(frame1, text='y=')
-       label_input_sosa_y.grid(row=0, column=0, sticky="w")
-       entry_sosa_y = t.Entry(frame1, width=8)
-       entry_sosa_y.grid(row=0, column=1, padx=5, pady=5)
-       label_input_sosa_a= t.Label(frame1, text='x^2 +')
-       label_input_sosa_a.grid(row=0, column=2, sticky="w")
-       entry_sosa_a = t.Entry(frame1, width=8)
-       entry_sosa_a.grid(row=0, column=3, padx=5, pady=5)
-       label_input_sosa_b= t.Label(frame1, text='x +')
-       label_input_sosa_b.grid(row=0, column=4, sticky="w")
-       entry_sosa_b = t.Entry(frame1, width=8)
-       entry_sosa_b.grid(row=0, column=5, padx=5, pady=5)
-       master.mainloop()
-
-
-
     def valore(self, key):
         if key in self.dizionary:
             return self.dizionary[key].get()
