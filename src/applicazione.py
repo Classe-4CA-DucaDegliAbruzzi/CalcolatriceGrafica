@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from base_grafico import Retta, Parabola, Seno, Coseno, FunzioneX, FunzioneY
 from tela import Tela
+from input_parametri import InputFunzione
 
 
 class Applicazione:
@@ -20,6 +21,7 @@ class Applicazione:
         self.range_y_max_entry = None
 
         self.valore_entry = None
+        self.valore_label = None
         self.funz_da_selezionare = None
 
         self.funzioni = {
@@ -36,6 +38,8 @@ class Applicazione:
         self.grafico = None
         self.grafico_corrente = ""
 
+        self.frame_argomento_funz = None
+
         self.crea_ui()
         self.aggiorna()
 
@@ -44,8 +48,7 @@ class Applicazione:
 
         a = Frame(self.root, bg='old lace', height=300, width=500)
         a.grid(column=0, row=0)
-        b = Frame(self.root, bg='old lace', height=300, width=500)
-        b.grid(column=1, row=0)
+        self.frame_argomento_funz = Frame(self.root, bg='old lace', height=300, width=500)
 
         self.funz_da_selezionare = StringVar()
         tendina = ttk.Combobox(a, width=30, background="antique white", textvariable=self.funz_da_selezionare)
@@ -63,11 +66,11 @@ class Applicazione:
         text_range = Label(a, text="Range y [       ;       ]", font="Times 13", fg="black", bg="antique white")
         text_range.place(x=250, y=250)
 
-        Valorex_funzione = Label(b, text="f(   ) = ", bg="antique white", fg="black", font="Verdana")
+        Valorex_funzione = Label(self.frame_argomento_funz, text="f(   ) = ", bg="antique white", fg="black", font="Verdana")
         Valorex_funzione.place(x=40, y=175)
 
-        Valorey_funzione = Label(b, text=' ', bg="antique white", fg="black", font="Arial")
-        Valorey_funzione.place(x=120, y=175, width=50)
+        self.valore_label = Label(self.frame_argomento_funz, text=' ', bg="antique white", fg="black", font="Arial")
+        self.valore_label.place(x=120, y=175, width=50)
 
         self.root.columnconfigure(0, weight=0)
         c = Frame(self.root, bg="antique white", height=500, width=500)
@@ -94,12 +97,11 @@ class Applicazione:
         self.range_y_min_entry.place(x=319, y=254, width=20)
         self.range_y_max_entry.place(x=352, y=254, width=20)
 
-        valore = IntVar()
-        self.valore_entry = Entry(b, textvariable=valore)
+        self.valore_entry = Entry(self.frame_argomento_funz)
         self.valore_entry.place(x=55, y=178, width=18)
 
-        Clean = Button(b, text="Aggiorna", font="Times 15", fg="black", bg="medium sea green", command=self.aggiorna)
-        Clean.place(x=40, y=55)
+        Clean = Button(a, text="Aggiorna", font="Times 15", fg="black", bg="medium sea green", command=self.aggiorna)
+        Clean.place(x=310, y=100)
 
         Imposta = Button(a, text="Imposta", font="Times 15", fg="black", bg="medium sea green", command=self.imposta)
         Imposta.place(x=310, y=55)
@@ -123,6 +125,16 @@ class Applicazione:
             self.grafico.disegna()
         self.tela.disegna_numeri()
 
+        if self.grafico and isinstance(self.grafico.param, InputFunzione):
+            try:
+                val = float(self.valore_entry.get())
+            except ValueError:
+                return
+            risultato = self.grafico.param.valore(val)
+            if risultato is None:
+                return
+            self.valore_label.configure(text=str(risultato))
+
     # imposta
     def imposta(self):
         if self.funz_da_selezionare.get() == "":
@@ -136,6 +148,11 @@ class Applicazione:
         self.widget_parametri = self.grafico.param.crea_widget(self.frame_parametri)
         self.widget_parametri.pack()
         self.grafico_corrente = self.funz_da_selezionare.get()
+
+        if isinstance(self.grafico.param, InputFunzione):
+            self.frame_argomento_funz.grid(column=1, row=0)
+        else:
+            self.frame_argomento_funz.grid_forget()
 
     def run(self):
         self.root.mainloop()
