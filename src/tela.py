@@ -28,45 +28,47 @@ class Tela:
     def y_piano_a_y_tela(self, y_piano):
         return ((y_piano-self.range_y[0])/(self.range_y[1]-self.range_y[0]))*(0-self.h())+self.h()
 
-    def linea(self, p1, p2, spessore=None, colore=None):
-        if spessore is None:
-            spessore = self.spessore
-        if colore is None:
-            colore = self.colore
-        self.canvas.create_line(p1[0], p1[1], p2[0], p2[1], width=spessore, fill=colore)
+    def linea(self, p1, p2):
+        self.canvas.create_line(p1[0], p1[1], p2[0], p2[1], width=self.spessore, fill=self.colore)
 
-    def linee(self, punti, spessore=None, colore=None):
+    def linee(self, punti):
         # Disegna le linee connesse dai punti
         for i in range(len(punti) - 1):
             x1, y1 = punti[i]
             x2, y2 = punti[i + 1]
-            self.linea((x1, y1), (x2, y2), spessore, colore)
+            self.linea((x1, y1), (x2, y2))
     
     def ellisse(self, p1, p2):
         self.canvas.create_oval(p1[0], p1[1], p2[0], p2[1], width=self.spessore, outline=self.colore)
     
     def disegna_sfondo(self):
+        prev_spessore = self.spessore
+        prev_colore = self.colore
+        
         # Disegna assi x e y
         x_assi_start = (self.x_piano_a_x_tela(self.range_x[0]), self.h() / 2)
         x_assi_end = (self.x_piano_a_x_tela(self.range_x[1]), self.h() / 2,)
-        self.linea(x_assi_start, x_assi_end, spessore=self.spessore_assi, colore=self.colore_assi)
+        self.linea(x_assi_start, x_assi_end)
         
         y_assi_start = (self.w() / 2, self.y_piano_a_y_tela(self.range_y[0]))
         y_assi_end = (self.w() / 2, self.y_piano_a_y_tela(self.range_y[1]))
-        self.linea(y_assi_start, y_assi_end, spessore=self.spessore_assi, colore=self.colore_assi)
+        self.linea(y_assi_start, y_assi_end)
         
         # Disegna linee per ogni unità intera del piano
         for i in range(int(self.range_x[0]) + 1, int(self.range_x[1])):
             x = self.x_piano_a_x_tela(i)
             y_start = self.y_piano_a_y_tela(self.range_y[0])
             y_end = self.y_piano_a_y_tela(self.range_y[1])
-            self.linea((x, y_start), (x, y_end), spessore=self.spessore_griglia, colore=self.colore_griglia)
+            self.linea((x, y_start), (x, y_end))
         
         for i in range(int(self.range_y[0]) + 1, int(self.range_y[1])):
             y = self.y_piano_a_y_tela(i)
             x_start = self.x_piano_a_x_tela(self.range_x[0])
             x_end = self.x_piano_a_x_tela(self.range_x[1])
-            self.linea((x_start, y), (x_end, y), spessore=self.spessore_griglia, colore=self.colore_griglia)
+            self.linea((x_start, y), (x_end, y))
+            
+        self.colore = prev_colore
+        self.spessore = prev_spessore
     
     def disegna_numeri(self):
         pass
