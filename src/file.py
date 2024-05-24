@@ -47,11 +47,16 @@ class InputCaselle(BaseInputParametri):
         
     def valore(self, key):
         if key in self.dizionary:
-            return self.dizionary[key].get()
+            try:
+                return float(self.dizionary[key].get())
+            except ValueError:
+                return None
         return None
 
     def validi(self):
         for entry in self.dizionary.values():
+            if entry is None:
+                return False
             try:
                 float(entry.get())
             except ValueError:
