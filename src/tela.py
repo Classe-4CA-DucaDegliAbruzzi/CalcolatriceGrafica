@@ -41,16 +41,6 @@ class Tela:
         
         prev_spessore = self.spessore
         prev_colore = self.colore
-        self.colore = "black"
-        self.spessore = 2
-        # Disegna assi x e y
-        x_assi_start = (self.x_piano_a_x_tela(self.range_x[0]), self.h() / 2)
-        x_assi_end = (self.x_piano_a_x_tela(self.range_x[1]), self.h() / 2)
-        self.linea(x_assi_start, x_assi_end)
-        
-        y_assi_start = (self.w() / 2, self.y_piano_a_y_tela(self.range_y[0]))
-        y_assi_end = (self.w() / 2, self.y_piano_a_y_tela(self.range_y[1]))
-        self.linea(y_assi_start, y_assi_end)
         
         self.colore = "grey"
         self.spessore = 1
@@ -67,7 +57,18 @@ class Tela:
             x_start = self.x_piano_a_x_tela(self.range_x[0])
             x_end = self.x_piano_a_x_tela(self.range_x[1])
             self.linea((x_start, y), (x_end, y))
-            
+
+        self.colore = "black"
+        self.spessore = 2
+        # Disegna assi x e y
+        x_assi_start = (0, self.y_piano_a_y_tela(0))
+        x_assi_end = (self.w(), self.y_piano_a_y_tela(0))
+        self.linea(x_assi_start, x_assi_end)
+
+        y_assi_start = (self.x_piano_a_x_tela(0), 0)
+        y_assi_end = (self.x_piano_a_x_tela(0), self.h())
+        self.linea(y_assi_start, y_assi_end)
+
         self.colore = prev_colore
         self.spessore = prev_spessore
 

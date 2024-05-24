@@ -23,7 +23,7 @@ num_literal: (0-9)+ ['.' (0-9)+]
 
 from abc import ABC, abstractmethod
 import math
-from .lexer import ErroreInterpretazione, TipoToken, Token, crea_token
+from .lexer import ErroreInterpretazione, TipoToken, Token, crea_token, traduttore
 
 FUNZIONI = {
     'sin': math.sin,
@@ -43,9 +43,9 @@ FUNZIONI = {
 FUNZIONI_CON_BASE = {'rt', 'log'}
 
 PARENS = {
-    TipoToken.PAREN_TONDA_DX: TipoToken.PAREN_TONDA_SX,
-    TipoToken.PAREN_QUADRA_DX: TipoToken.PAREN_QUADRA_SX,
-    TipoToken.PAREN_GRAFFA_DX: TipoToken.PAREN_GRAFFA_SX
+    TipoToken.PAREN_TONDA_SX: TipoToken.PAREN_TONDA_DX,
+    TipoToken.PAREN_QUADRA_SX: TipoToken.PAREN_QUADRA_DX,
+    TipoToken.PAREN_GRAFFA_SX: TipoToken.PAREN_GRAFFA_DX
 }
 
 
@@ -347,48 +347,8 @@ class Parser:
             return self.implied_mul(False)
 
 
-def traduttore_temp(input_utente):
-    lista_tradotta = []
-    ident = ""
-    num = ""
-
-    for c in input_utente:
-        if c.isalpha():
-            ident += c
-        elif c.isdigit():
-            num += c
-            if num.count(".") > 1:
-                return ErroreInterpretazione("più di un punto decimale nel numero")
-        elif c not in "+-*/^()[]{}_ ":
-            return ErroreInterpretazione(f"carattere '{c}' non riconosciuto")
-
-        if not c.isalpha() and ident:
-            lista_tradotta.append(ident)
-            ident = ""
-        elif not c.isdigit() and num and c != ".":
-            if num[0] == ".":
-                return ErroreInterpretazione("nessuna cifra prima del punto decimale")
-            if num[-1] == ".":
-                return ErroreInterpretazione("nessuna cifra dopo il punto decimale")
-            lista_tradotta.append(float(num))
-            num = ""
-        if c in "+-*/^()[]{}_":
-            lista_tradotta.append(c)
-
-    if ident:
-        lista_tradotta.append(ident)
-    elif num:
-        if num[0] == ".":
-            return ErroreInterpretazione("nessuna cifra prima del punto decimale")
-        if num[-1] == ".":
-            return ErroreInterpretazione("nessuna cifra dopo il punto decimale")
-        lista_tradotta.append(float(num))
-
-    return lista_tradotta
-
-
 def interpreta_funzione(input_utente, var_ind):
-    lista_parti = traduttore_temp(input_utente)
+    lista_parti = traduttore(input_utente)
     if isinstance(lista_parti, ErroreInterpretazione):
         return lista_parti
     lista_token = crea_token(lista_parti)

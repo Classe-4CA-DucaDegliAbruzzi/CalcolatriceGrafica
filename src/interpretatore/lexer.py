@@ -85,8 +85,8 @@ def crea_token(lista_parti):
     lista_token = []
 
     for parte in lista_parti:
-        if isinstance(parte, int) or isinstance(parte, float):
-            lista_token.append(Token(TipoToken.NUMERO, parte))
+        if parte.isdigit():
+            lista_token.append(Token(TipoToken.NUMERO, int(parte)))
         elif parte.isalpha():
             lista_token.append(Token(TipoToken.IDENT, parte))
         else:
@@ -99,5 +99,54 @@ def crea_token(lista_parti):
     return lista_token
 
 
+operazioni = ['+', '-', '*', '/', '^', '_']
+parentesi_sx = ['(', '[', '{']
+parentesi_dx = [')', ']', '}']
+funzioni = ['cos', 'sin', 'tan', 'arccos', 'arcsin', 'arctan', 'log', 'ln', 'sqrt', 'abs', 'rt', 'sign']
+
+
 def traduttore(stringa):
-    return []
+    i = 0
+    stringa_tradotta = ''
+    while i < len(stringa):
+        if stringa[i].isalpha():
+            stringa_tradotta += stringa[i]
+
+        elif stringa[i] in parentesi_sx or stringa[i] in parentesi_dx:
+            stringa_tradotta += ' ' + stringa[i] + ' '
+
+        elif stringa[i] == '_' or stringa[i] in operazioni:
+            stringa_tradotta += ' ' + stringa[i] + ' '
+
+        elif stringa[i].isdigit():
+            stringa_tradotta += stringa[i]
+
+        i += 1
+
+    Num = True
+    stringa_corretta = ''
+    k = 0
+
+    while k < len(stringa_tradotta):
+        if stringa_tradotta[k].isdigit():
+            stringa_corretta += stringa_tradotta[k]
+            Num = True
+
+        elif stringa_tradotta[k] == ' ':
+            stringa_corretta += stringa_tradotta[k]
+            Num = False
+
+        elif stringa_tradotta[k].isalpha and Num:
+            stringa_corretta += ' ' + stringa_tradotta[k]
+            Num = False
+
+        elif stringa_tradotta[k].isalpha and not Num:
+            stringa_corretta += stringa_tradotta[k]
+            Num = False
+
+        elif stringa_tradotta[k] in operazioni:
+            Num = False
+        k += 1
+
+    lista_tradotta = stringa_corretta.split()
+    return lista_tradotta
