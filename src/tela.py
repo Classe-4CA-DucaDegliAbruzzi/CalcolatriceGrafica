@@ -13,7 +13,7 @@ class Tela:
         return int(self.canvas.cget("height"))
     
     def x_tela_a_x_piano(self, x_tela):
-        return (((x_tela)*(self.range_x[1]-self.range_x[0]))/(self.range_x[1]))+self.range_x[0] 
+        return ((x_tela*(self.range_x[1]-self.range_x[0]))/(self.range_x[1]))+self.range_x[0]
 
     def y_tela_a_y_piano(self, y_tela):
         return (((y_tela-self.h())*(self.range_y[1]-self.range_y[0]))/(0-self.h()))+self.h()
@@ -62,7 +62,7 @@ class Tela:
             y_end = self.y_piano_a_y_tela(self.range_y[1])
             self.linea((x, y_start), (x, y_end))
         
-        for i in range(int(self.range_y[0]) -1, int(self.range_y[1]) + 1):
+        for i in range(int(self.range_y[0]) - 1, int(self.range_y[1]) + 1):
             y = self.y_piano_a_y_tela(i)
             x_start = self.x_piano_a_x_tela(self.range_x[0])
             x_end = self.x_piano_a_x_tela(self.range_x[1])
@@ -70,18 +70,16 @@ class Tela:
             
         self.colore = prev_colore
         self.spessore = prev_spessore
-        
-        
+
     def disegna_numeri(self):
-        
-        #Disegna i numeri nell'asse x
+        # Disegna i numeri nell'asse x
         for i in range(int(self.range_x[0]), int(self.range_x[1]) + 1):
             if i != 0:
                 x = self.x_piano_a_x_tela(i)
                 y = self.y_piano_a_y_tela(0)
                 self.canvas.create_text(x, y + 10, text=str(i), fill="black")
         
-        #Disegna i numeri nell'asse y
+        # Disegna i numeri nell'asse y
         for i in range(int(self.range_y[0]), int(self.range_y[1]) + 1):
             if i != 0:
                 x = self.x_piano_a_x_tela(0)
@@ -101,9 +99,9 @@ if __name__ == "__main__":
     import tkinter as tk
     
     root = tk.Tk()
-    canvas = tk.Canvas(root, width=500, height=500)
-    canvas.grid(column=0, row=0)
-    tela = Tela(canvas)
+    canvas_ = tk.Canvas(root, width=500, height=500)
+    canvas_.grid(column=0, row=0)
+    tela = Tela(canvas_)
 
     pulsante_pulisci = tk.Button(root, text="Pulisci", command=tela.pulisci)
     pulsante_pulisci.grid(row=1, column=0)
@@ -117,12 +115,12 @@ if __name__ == "__main__":
     tela.disegna_sfondo()
 
     # disegna un segmento da (-3, 2) a (4, 1)
-    x1 = tela.x_piano_a_x_tela(0)
-    y1 = tela.y_piano_a_y_tela(0)
+    x1_ = tela.x_piano_a_x_tela(0)
+    y1_ = tela.y_piano_a_y_tela(0)
 
-    x2 = tela.x_piano_a_x_tela(5)
-    y2 = tela.y_piano_a_y_tela(5)
-    tela.linea((x1, y1), (x2, y2))
+    x2_ = tela.x_piano_a_x_tela(5)
+    y2_ = tela.y_piano_a_y_tela(5)
+    tela.linea((x1_, y1_), (x2_, y2_))
     
     # disegna un'ellisse
     tela.ellisse((100, 200), (300, 400))

@@ -1,6 +1,11 @@
-import abc
+"""
+Autrici: Emma Rossi, Alessia Ciocan
+"""
 
-#fatto da Emma Rossi e Alessia Ciocan 
+import abc
+from input_parametri import InputCaselle, InputFunzione
+
+
 class BaseGrafico(abc.ABC):
     def __init__(self, tela):
         self.tela = tela
@@ -23,14 +28,13 @@ class BaseGraficoFunzioneX(BaseGrafico, abc.ABC):
     @abc.abstractmethod
     def funzione(self, x, parametri):
         pass
-        
 
     def disegna(self):
         if not self.param.validi():
             return
         else: 
             lista_nomi = self.param.lista_nomi()
-            dizionario = {} #questo dizionario associa i nome dei parametro al suo valore  
+            dizionario = {}  # questo dizionario associa i nome dei parametro al suo valore
             for nome in lista_nomi:
                 dizionario[nome] = self.param.valore(nome)
             
@@ -58,7 +62,7 @@ class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
             return 
         else: 
             lista_nomi = self.param.lista_nomi()
-            dizionario = {} #questo dizionario associa i nome dei parametro al suo valore  
+            dizionario = {}  # questo dizionario associa i nome dei parametro al suo valore
             for nome in lista_nomi: 
                 dizionario[nome] = self.param.valore(nome)
             
@@ -71,7 +75,7 @@ class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
                 lista_punti.append(punto)
             self.tela.linee(lista_punti)
     
-    #esempio parabola
+
 class Parabola(BaseGraficoFunzioneX):
     def crea_param(self):
         return InputCaselle("y = $a$x^2 + $b$x + $c$")
@@ -82,10 +86,7 @@ class Parabola(BaseGraficoFunzioneX):
         c = parametri["c"]
         return a * x**2 + b * x + c
 
-   
-parabola = Parabola(tela)
 
-#esempio retta
 class Retta(BaseGraficoFunzioneX):
     def crea_param(self):
         return InputCaselle("y = mx + q")
@@ -93,16 +94,28 @@ class Retta(BaseGraficoFunzioneX):
     def funzione(self, x, parametri):
         m = parametri["m"]
         q = parametri["q"]
-        return m* x + q
+        return m * x + q
 
-   
-retta = Retta(tela)
+
+class FunzioneX(BaseGraficoFunzioneX):
+    def crea_param(self):
+        return InputFunzione("x")
+
+    def funzione(self, x, parametri):
+        return self.param.valore(x)
+
+
+class FunzioneY(BaseGraficoFunzioneY):
+    def crea_param(self):
+        return InputFunzione("y")
+
+    def funzione(self, y, parametri):
+        return self.param.valore(y)
 
 
 if __name__ == "__main__":
     import tkinter as tk
-    from tela_temp import Tela
-    from input_parametri_temp import InputCaselle
+    from tela import Tela
 
 
     class GraficoSenzaParametri(BaseGraficoFunzioneX):

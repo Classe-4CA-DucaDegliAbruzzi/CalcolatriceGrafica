@@ -377,7 +377,7 @@ def traduttore_temp(input_utente):
 
 
 def interpreta_funzione(input_utente, var_ind):
-    lista_parti = traduttore(input_utente)
+    lista_parti = traduttore_temp(input_utente)
     if isinstance(lista_parti, ErroreInterpretazione):
         return lista_parti
     lista_token = crea_token(lista_parti)
