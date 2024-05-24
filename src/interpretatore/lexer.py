@@ -39,6 +39,22 @@ class TipoToken(Enum):
     FINE_FUNZIONE = auto()
 
 
+SIMBOLO_A_TIPO_TOKEN = {
+    "+": TipoToken.PIU,
+    "-": TipoToken.MENO,
+    "*": TipoToken.PER,
+    "/": TipoToken.DIVISO,
+    "^": TipoToken.POTENZA,
+    "(": TipoToken.PAREN_TONDA_SX,
+    ")": TipoToken.PAREN_TONDA_DX,
+    "[": TipoToken.PAREN_QUADRA_SX,
+    "]": TipoToken.PAREN_QUADRA_DX,
+    "{": TipoToken.PAREN_GRAFFA_SX,
+    "}": TipoToken.PAREN_GRAFFA_DX,
+    "_": TipoToken.TRATTINO_BASSO
+}
+
+
 class Token:
     # l'attributo valore è utile quando si hanno token ad esempio `NUMERO` con
     # cui va salvato anche il valore del numero, quando si crea un token si
@@ -66,7 +82,21 @@ class Token:
 
 
 def crea_token(lista_parti):
-    return []
+    lista_token = []
+
+    for parte in lista_parti:
+        if parte.isalpha():
+            lista_token.append(Token(TipoToken.IDENT, parte))
+        elif isinstance(parte, int) or isinstance(parte, float):
+            lista_token.append(Token(TipoToken.NUMERO, parte))
+        else:
+            tipo = SIMBOLO_A_TIPO_TOKEN.get(parte)
+            if tipo is None:
+                return ErroreInterpretazione(f"simbolo sconosciuto '{parte}'")
+            lista_token.append(Token(tipo))
+
+    lista_token.append(Token(TipoToken.FINE_FUNZIONE))
+    return lista_token
 
 
 def traduttore(stringa):
