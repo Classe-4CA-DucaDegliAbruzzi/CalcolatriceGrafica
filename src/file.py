@@ -67,31 +67,38 @@ class InputCaselle(BaseInputParametri):
 class InputFunzione(BaseInputParametri):
     def __init__(self):
         super().__init__(fmt)
+        self.__prev_func = ""
+        self.__func = None
+        self.__func_entry = None
 
     def lista_nomi(self):
         return []
         
-
     def crea_widget(self, master):
-
-        def no_one_f_with_sosa(self):
-            read_sosa = entry_sosa.get()
-            interpreta_funzione(read_sosa)
-
         frame = t.Frame(master, padx=10, pady=10)
-        frame.pack()
-        label_input_sosa= t.Label(frame, text=fmt)
+        label_input_sosa= t.Label(frame, text='f('+fmt+') =')
         label_input_sosa.grid(row=0, column=0, sticky="w")
-        entry_sosa = t.Entry(frame, width=40)
-        entry_sosa.grid(row=0, column=1, padx=5, pady=5)
-        entry_funzione.bind('<Return>', no_one_f_with_sosa)
-        
-        master.mainloop()
-        
+        self.entry = t.Entry(frame, width=40)
+        self.entry.grid(row=0, column=1, padx=5, pady=5)
+
+    def __update_func(self):
+        if self.entry is None:
+            return
+        if self.entry.get() == self.__prev_func:
+            return self.__func
+        self.__func = interpreta_funzione(self.entry.get(), self.fmt)
+        if isinstance(self.__func, ErroreInterpretazione):
+            self.__func = None
+        self.__prev_func = self.entry.get()
+    
     def valore(self,x):
         if not self.validi():
             return None
+        return self.__func.calcola(x)
 
     def validi(self):
-        return
+        if self.entry is None:
+            return False
+        self.__update_func()
+        return self.__func is not None
         
