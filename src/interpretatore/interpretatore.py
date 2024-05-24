@@ -23,7 +23,7 @@ num_literal: (0-9)+ ['.' (0-9)+]
 
 from abc import ABC, abstractmethod
 import math
-from .lexer import ErroreInterpretazione, TipoToken, Token, crea_token, traduttore
+from .lexer import ErroreInterpretazione, TipoToken, Token, crea_token
 
 FUNZIONI = {
     'sin': math.sin,
@@ -149,7 +149,7 @@ class NodoBinario(NodoBase):
                 return None
             try:  # pow a differenza di ** non crea numeri complessi
                 risultato = math.pow(valore_sx, valore_dx)
-            except ValueError:
+            except (ValueError, OverflowError):
                 return None
             return risultato
         else:
@@ -202,6 +202,7 @@ class Parser:
             return expr
         if self.tok != TipoToken.FINE_FUNZIONE:
             return ErroreInterpretazione("funzione non valida")
+        return expr
 
     def expr(self, signed):
         nodo_sx = self.factor(signed)
@@ -290,7 +291,7 @@ class Parser:
             return value_node
 
     def value(self):
-        if self.tok in PARENS.keys():
+        if self.tok.tipo in PARENS.keys():
             paren = self.tok.tipo
             self.avanti()
             expr = self.expr(True)
@@ -340,7 +341,7 @@ class Parser:
             return ErroreInterpretazione(f"previsto un valore, trovato '{tok_a_simbolo(self.tok)}'")
 
     def func_arg(self):
-        if self.tok in PARENS.keys():
+        if self.tok.tipo in PARENS.keys():
             return self.value()
         else:
             return self.implied_mul(False)
@@ -370,8 +371,18 @@ def traduttore_temp(input_utente):
             if num[-1] == ".":
                 return ErroreInterpretazione("nessuna cifra dopo il punto decimale")
             lista_tradotta.append(float(num))
-        elif c in "+-*/^()[]{}_":
+            num = ""
+        if c in "+-*/^()[]{}_":
             lista_tradotta.append(c)
+
+    if ident:
+        lista_tradotta.append(ident)
+    elif num:
+        if num[0] == ".":
+            return ErroreInterpretazione("nessuna cifra prima del punto decimale")
+        if num[-1] == ".":
+            return ErroreInterpretazione("nessuna cifra dopo il punto decimale")
+        lista_tradotta.append(float(num))
 
     return lista_tradotta
 
@@ -381,6 +392,7 @@ def interpreta_funzione(input_utente, var_ind):
     if isinstance(lista_parti, ErroreInterpretazione):
         return lista_parti
     lista_token = crea_token(lista_parti)
+
     if isinstance(lista_token, ErroreInterpretazione):
         return lista_token
     parser = Parser(lista_token, var_ind)

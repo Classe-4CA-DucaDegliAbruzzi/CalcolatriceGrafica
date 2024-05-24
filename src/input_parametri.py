@@ -83,6 +83,7 @@ class InputFunzione(BaseInputParametri):
         label_input_sosa.grid(row=0, column=0, sticky="w")
         self.__entry = t.Entry(frame, width=40)
         self.__entry.grid(row=0, column=1, padx=5, pady=5)
+        return frame
 
     def __update_func(self):
         if self.__entry is None:

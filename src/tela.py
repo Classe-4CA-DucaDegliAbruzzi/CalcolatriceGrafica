@@ -13,10 +13,10 @@ class Tela:
         return int(self.canvas.cget("height"))
     
     def x_tela_a_x_piano(self, x_tela):
-        return ((x_tela*(self.range_x[1]-self.range_x[0]))/(self.range_x[1]))+self.range_x[0]
+        return ((x_tela*(self.range_x[1]-self.range_x[0]))/self.w())+self.range_x[0]
 
     def y_tela_a_y_piano(self, y_tela):
-        return (((y_tela-self.h())*(self.range_y[1]-self.range_y[0]))/(0-self.h()))+self.h()
+        return (((y_tela-self.h())*(self.range_y[1]-self.range_y[0]))/(-self.h()))+self.range_y[0]
     
     def x_piano_a_x_tela(self, x_piano):
         return (x_piano-self.range_x[0])*self.w()/(self.range_x[1]-self.range_x[0])

@@ -85,10 +85,10 @@ def crea_token(lista_parti):
     lista_token = []
 
     for parte in lista_parti:
-        if parte.isalpha():
-            lista_token.append(Token(TipoToken.IDENT, parte))
-        elif isinstance(parte, int) or isinstance(parte, float):
+        if isinstance(parte, int) or isinstance(parte, float):
             lista_token.append(Token(TipoToken.NUMERO, parte))
+        elif parte.isalpha():
+            lista_token.append(Token(TipoToken.IDENT, parte))
         else:
             tipo = SIMBOLO_A_TIPO_TOKEN.get(parte)
             if tipo is None:

@@ -3,6 +3,7 @@ Autrici: Emma Rossi, Alessia Ciocan
 """
 
 import abc
+import math
 from input_parametri import InputCaselle, InputFunzione
 
 
@@ -32,20 +33,20 @@ class BaseGraficoFunzioneX(BaseGrafico, abc.ABC):
     def disegna(self):
         if not self.param.validi():
             return
-        else: 
-            lista_nomi = self.param.lista_nomi()
-            dizionario = {}  # questo dizionario associa i nome dei parametro al suo valore
-            for nome in lista_nomi:
-                dizionario[nome] = self.param.valore(nome)
-            
-            lista_punti = []   
-            for x_pixel in range(0, self.tela.w()):
-                x_piano = self.tela.x_tela_a_x_piano(x_pixel)  # x_tela è uguale a x_pixel
-                y_piano = self.funzione(x_piano, dizionario)
-                y_pixel = self.tela.y_piano_a_y_tela(y_piano)
-                punto = (x_pixel, y_pixel)
-                lista_punti.append(punto)
-            self.tela.linee(lista_punti)
+
+        lista_nomi = self.param.lista_nomi()
+        dizionario = {}  # questo dizionario associa i nome dei parametro al suo valore
+        for nome in lista_nomi:
+            dizionario[nome] = self.param.valore(nome)
+
+        lista_punti = []
+        for x_pixel in range(0, self.tela.w()):
+            x_piano = self.tela.x_tela_a_x_piano(x_pixel)  # x_tela è uguale a x_pixel
+            y_piano = self.funzione(x_piano, dizionario)
+            y_pixel = self.tela.y_piano_a_y_tela(y_piano)
+            punto = (x_pixel, y_pixel)
+            lista_punti.append(punto)
+        self.tela.linee(lista_punti)
 
 
 class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
@@ -60,20 +61,20 @@ class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
     def disegna(self):
         if not self.param.validi():
             return 
-        else: 
-            lista_nomi = self.param.lista_nomi()
-            dizionario = {}  # questo dizionario associa i nome dei parametro al suo valore
-            for nome in lista_nomi: 
-                dizionario[nome] = self.param.valore(nome)
-            
-            lista_punti = []
-            for y_pixel in range(0, self.tela.h()):
-                y_piano = self.tela.y_tela_a_y_piano(y_pixel)  # y_tela è uguale a y_pixel
-                x_piano = self.funzione(y_piano, dizionario)
-                x_pixel = self.tela.x_piano_a_x_tela(x_piano)
-                punto = (x_pixel, y_pixel)
-                lista_punti.append(punto)
-            self.tela.linee(lista_punti)
+
+        lista_nomi = self.param.lista_nomi()
+        dizionario = {}  # questo dizionario associa i nome dei parametro al suo valore
+        for nome in lista_nomi:
+            dizionario[nome] = self.param.valore(nome)
+
+        lista_punti = []
+        for y_pixel in range(0, self.tela.h()):
+            y_piano = self.tela.y_tela_a_y_piano(y_pixel)  # y_tela è uguale a y_pixel
+            x_piano = self.funzione(y_piano, dizionario)
+            x_pixel = self.tela.x_piano_a_x_tela(x_piano)
+            punto = (x_pixel, y_pixel)
+            lista_punti.append(punto)
+        self.tela.linee(lista_punti)
     
 
 class Parabola(BaseGraficoFunzioneX):
@@ -89,7 +90,7 @@ class Parabola(BaseGraficoFunzioneX):
 
 class Retta(BaseGraficoFunzioneX):
     def crea_param(self):
-        return InputCaselle("y = mx + q")
+        return InputCaselle("y = $m$x + $q$")
 
     def funzione(self, x, parametri):
         m = parametri["m"]
@@ -111,6 +112,26 @@ class FunzioneY(BaseGraficoFunzioneY):
 
     def funzione(self, y, parametri):
         return self.param.valore(y)
+
+
+class Seno(BaseGraficoFunzioneX):
+    def crea_param(self):
+        return InputCaselle("y = $a$ * sin($w$ * x)")
+
+    def funzione(self, x, parametri):
+        a = parametri["a"]
+        w = parametri["w"]
+        return a * math.sin(w * x)
+
+
+class Coseno(BaseGraficoFunzioneX):
+    def crea_param(self):
+        return InputCaselle("y = $a$ * cos($w$ * x)")
+
+    def funzione(self, x, parametri):
+        a = parametri["a"]
+        w = parametri["w"]
+        return a * math.cos(w * x)
 
 
 if __name__ == "__main__":
