@@ -5,10 +5,6 @@ class Tela:
         self.range_y = (-5.0, 5.0)
         self.colore = "black"
         self.spessore = 1
-        self.colore_griglia = "gray"
-        self.colore_assi = "black"
-        self.spessore_griglia = 1
-        self.spessore_assi = 2
 
     def w(self):
         return int(self.canvas.cget("width"))
@@ -42,9 +38,11 @@ class Tela:
         self.canvas.create_oval(p1[0], p1[1], p2[0], p2[1], width=self.spessore, outline=self.colore)
     
     def disegna_sfondo(self):
+        
         prev_spessore = self.spessore
         prev_colore = self.colore
-        
+        self.colore = "black"
+        self.spessore = 2
         # Disegna assi x e y
         x_assi_start = (self.x_piano_a_x_tela(self.range_x[0]), self.h() / 2)
         x_assi_end = (self.x_piano_a_x_tela(self.range_x[1]), self.h() / 2,)
@@ -54,14 +52,17 @@ class Tela:
         y_assi_end = (self.w() / 2, self.y_piano_a_y_tela(self.range_y[1]))
         self.linea(y_assi_start, y_assi_end)
         
+        self.colore = "grey"
+        self.spessore = 1
+        
         # Disegna linee per ogni unità intera del piano
-        for i in range(int(self.range_x[0]) + 1, int(self.range_x[1])):
+        for i in range(int(self.range_x[0]) - 1, int(self.range_x[1]) + 1):
             x = self.x_piano_a_x_tela(i)
             y_start = self.y_piano_a_y_tela(self.range_y[0])
             y_end = self.y_piano_a_y_tela(self.range_y[1])
             self.linea((x, y_start), (x, y_end))
         
-        for i in range(int(self.range_y[0]) + 1, int(self.range_y[1])):
+        for i in range(int(self.range_y[0]) -1, int(self.range_y[1]) + 1):
             y = self.y_piano_a_y_tela(i)
             x_start = self.x_piano_a_x_tela(self.range_x[0])
             x_end = self.x_piano_a_x_tela(self.range_x[1])
@@ -69,7 +70,8 @@ class Tela:
             
         self.colore = prev_colore
         self.spessore = prev_spessore
-    
+        
+        
     def disegna_numeri(self):
         pass
     
@@ -90,8 +92,8 @@ if __name__ == "__main__":
 
     tela.colore = "#FF0000"  # rosso
     tela.spessore = 2
-    tela.range_x = (-10, 10)
-    tela.range_y = (-10, 10)
+    tela.range_x = (-4.5, 4.5)
+    tela.range_y = (-4.5, 4.5)
 
     # disegna le linee di sfondo
     tela.disegna_sfondo()
@@ -106,7 +108,7 @@ if __name__ == "__main__":
     tela.ellisse((100, 200), (300, 400))
 
     
-    tela.linee([(50, 50), (100, 150), (200, 100), (300, 200)], spessore=2, colore="#FF0000")
+    tela.linee([(50, 50), (100, 150), (200, 100), (300, 200)])
 
     # disegna i numeri delle linee
     tela.disegna_numeri()
