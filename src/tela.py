@@ -45,7 +45,7 @@ class Tela:
         self.spessore = 2
         # Disegna assi x e y
         x_assi_start = (self.x_piano_a_x_tela(self.range_x[0]), self.h() / 2)
-        x_assi_end = (self.x_piano_a_x_tela(self.range_x[1]), self.h() / 2,)
+        x_assi_end = (self.x_piano_a_x_tela(self.range_x[1]), self.h() / 2)
         self.linea(x_assi_start, x_assi_end)
         
         y_assi_start = (self.w() / 2, self.y_piano_a_y_tela(self.range_y[0]))
@@ -73,7 +73,25 @@ class Tela:
         
         
     def disegna_numeri(self):
-        pass
+        
+        #Disegna i numeri nell'asse x
+        for i in range(int(self.range_x[0]), int(self.range_x[1]) + 1):
+            if i != 0:
+                x = self.x_piano_a_x_tela(i)
+                y = self.y_piano_a_y_tela(0)
+                self.canvas.create_text(x, y + 10, text=str(i), fill="black")
+        
+        #Disegna i numeri nell'asse y
+        for i in range(int(self.range_y[0]), int(self.range_y[1]) + 1):
+            if i != 0:
+                x = self.x_piano_a_x_tela(0)
+                y = self.y_piano_a_y_tela(i)
+                self.canvas.create_text(x - 10, y, text=str(i), fill="black")
+        
+        # Disegna lo zero
+        x0 = self.x_piano_a_x_tela(0)
+        y0 = self.y_piano_a_y_tela(0)
+        self.canvas.create_text(x0 - 10, y0 + 10, text="0", fill="black")
     
     def pulisci(self):
         self.canvas.delete("all")
@@ -92,8 +110,8 @@ if __name__ == "__main__":
 
     tela.colore = "#FF0000"  # rosso
     tela.spessore = 2
-    tela.range_x = (-4.5, 4.5)
-    tela.range_y = (-4.5, 4.5)
+    tela.range_x = (-5.5, 5.5)
+    tela.range_y = (-5.5, 5.5)
 
     # disegna le linee di sfondo
     tela.disegna_sfondo()
@@ -105,11 +123,14 @@ if __name__ == "__main__":
     x2 = tela.x_piano_a_x_tela(5)
     y2 = tela.y_piano_a_y_tela(5)
     tela.linea((x1, y1), (x2, y2))
+    
+    # disegna un'ellisse
     tela.ellisse((100, 200), (300, 400))
 
-    
+    # disegna una serie di linee connesse
     tela.linee([(50, 50), (100, 150), (200, 100), (300, 200)])
 
     # disegna i numeri delle linee
     tela.disegna_numeri()
+    
     root.mainloop()
