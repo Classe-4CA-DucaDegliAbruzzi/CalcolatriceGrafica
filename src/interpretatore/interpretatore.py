@@ -48,21 +48,6 @@ PARENS = {
     TipoToken.PAREN_GRAFFA_DX: TipoToken.PAREN_GRAFFA_SX
 }
 
-SIMBOLO_A_TIPO_TOKEN = {
-    "+": TipoToken.PIU,
-    "-": TipoToken.MENO,
-    "*": TipoToken.PER,
-    "/": TipoToken.DIVISO,
-    "^": TipoToken.POTENZA,
-    "(": TipoToken.PAREN_TONDA_SX,
-    ")": TipoToken.PAREN_TONDA_DX,
-    "[": TipoToken.PAREN_QUADRA_SX,
-    "]": TipoToken.PAREN_QUADRA_DX,
-    "{": TipoToken.PAREN_GRAFFA_SX,
-    "}": TipoToken.PAREN_GRAFFA_DX,
-    "_": TipoToken.TRATTINO_BASSO
-}
-
 
 def tok_a_simbolo(tok):
     if tok == TipoToken.PIU:
@@ -359,24 +344,6 @@ class Parser:
             return self.value()
         else:
             return self.implied_mul(False)
-
-
-def crea_token_temp(lista_parti):
-    lista_token = []
-
-    for parte in lista_parti:
-        if parte.isalpha():
-            lista_token.append(Token(TipoToken.IDENT, parte))
-        elif isinstance(parte, int) or isinstance(parte, float):
-            lista_token.append(Token(TipoToken.NUMERO, parte))
-        else:
-            tipo = SIMBOLO_A_TIPO_TOKEN.get(parte)
-            if tipo is None:
-                return ErroreInterpretazione(f"simbolo sconosciuto '{parte}'")
-            lista_token.append(Token(tipo))
-
-    lista_token.append(Token(TipoToken.FINE_FUNZIONE))
-    return lista_token
 
 
 def traduttore_temp(input_utente):
