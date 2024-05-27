@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import tkinter as t
+import tkinter.ttk as t
 from interpretatore import interpreta_funzione, ErroreInterpretazione
 
 
@@ -36,13 +36,13 @@ class InputCaselle(BaseInputParametri):
         return list(self.dictionary.keys())
 
     def crea_widget(self, master):
-        frame = t.Frame(master, padx=10, pady=10)
+        frame = t.Frame(master)
         for i, parte in enumerate(self.parti):
             if i % 2 == 0:
                 label_input_sosa1 = t.Label(frame, text=parte)
                 label_input_sosa1.grid(row=0, column=i, sticky='w')
             else:
-                entry_sosa1 = t.Entry(frame, width=8)
+                entry_sosa1 = t.Entry(frame, width=4, justify='right')
                 entry_sosa1.grid(row=0, column=i, padx=5,pady=5)
                 self.dictionary[parte] = entry_sosa1
         return frame
@@ -78,7 +78,7 @@ class InputFunzione(BaseInputParametri):
         return []
         
     def crea_widget(self, master):
-        frame = t.Frame(master, padx=10, pady=10)
+        frame = t.Frame(master)
         label_input_sosa = t.Label(frame, text='f(' + self.fmt + ') =')
         label_input_sosa.grid(row=0, column=0, sticky="w")
         self.__entry = t.Entry(frame, width=40)

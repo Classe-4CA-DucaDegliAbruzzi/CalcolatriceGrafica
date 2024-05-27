@@ -9,9 +9,7 @@ class Applicazione:
     def __init__(self):
         self.root = Tk()
         self.root.title("Calcolatrice")
-        self.root.configure(bg="old lace")
-        self.root.geometry('1000x800')
-        self.root.columnconfigure(0, weight=1)
+        self.root.resizable(False, False)
 
         self.tela = None
 
@@ -33,6 +31,8 @@ class Applicazione:
             "x = f(y)": FunzioneY
         }
 
+        self.grafico_default = "y = mx + q"
+
         self.frame_parametri = None
         self.widget_parametri = None
         self.grafico = None
@@ -46,65 +46,80 @@ class Applicazione:
     def crea_ui(self):
         self.root.columnconfigure(0, weight=1)
 
-        a = Frame(self.root, bg='old lace', height=300, width=500)
-        a.grid(column=0, row=0)
-        self.frame_argomento_funz = Frame(self.root, bg='old lace', height=300, width=500)
+        controlli = ttk.Frame(self.root)
+        controlli.grid(row=0, column=0, sticky=EW)
+        controlli.columnconfigure(0, weight=1)
 
-        self.funz_da_selezionare = StringVar()
-        tendina = ttk.Combobox(a, width=30, background="antique white", textvariable=self.funz_da_selezionare)
-        tendina['values'] = list(self.funzioni.keys())
-        tendina['state'] = 'readonly'
-        tendina.place(x=60, y=63)
-
-        # testi
-
-        self.frame_parametri = Frame(a, bg='old lace')
-        self.frame_parametri.place(x=60, y=177)
-
-        text_range = Label(a, text="Range x [         ;         ]", font="Times 13", fg="black", bg="antique white")
-        text_range.place(x=60, y=250)
-        text_range = Label(a, text="Range y [         ;         ]", font="Times 13", fg="black", bg="antique white")
-        text_range.place(x=250, y=250)
-
-        Valorex_funzione = Label(self.frame_argomento_funz, text="f(   ) = ", bg="antique white", fg="black", font="Verdana")
-        Valorex_funzione.place(x=40, y=175)
-
-        self.valore_label = Label(self.frame_argomento_funz, text=' ', bg="antique white", fg="black", font="Arial")
-        self.valore_label.place(x=120, y=175, width=50)
-
-        self.root.columnconfigure(0, weight=0)
-        c = Frame(self.root, bg="antique white", height=500, width=500)
-        c.grid(row=1, column=0, columnspan=4)
-
-        grafico = Canvas(c, bg="white", width=500, height=500)
-        grafico.place(x=0, y=0)
+        grafico = Canvas(self.root, bg="white", width=500, height=500)
+        grafico.grid(row=1, column=0)
         self.tela = Tela(grafico)
         self.tela.colore = "red"
         self.tela.spessore = 2
 
-        # Input
+        prima_riga = ttk.Frame(controlli)
+        prima_riga.grid(row=0, column=0, sticky=EW)
+        prima_riga.columnconfigure(0, weight=0)
+        prima_riga.columnconfigure(1, weight=0)
+        prima_riga.columnconfigure(2, weight=1)
 
-        self.range_x_min_entry = Entry(a)
+        self.funz_da_selezionare = ttk.Combobox(
+            prima_riga,
+            width=30,
+            values=list(self.funzioni.keys())
+        )
+        self.funz_da_selezionare.grid(row=0, column=0, sticky=W, padx=5, pady=2)
+        self.funz_da_selezionare.insert(0, self.grafico_default)
+        self.funz_da_selezionare["state"] = "readonly"
+
+        ttk.Button(
+            prima_riga,
+            text="Imposta",
+            command=self.imposta
+        ).grid(row=0, column=1, sticky=W, padx=5, pady=2)
+
+        ttk.Button(
+            prima_riga,
+            text="Aggiorna",
+            command=self.aggiorna
+        ).grid(row=0, column=2, sticky=E, padx=5, pady=2)
+
+        seconda_riga = ttk.Frame(controlli)
+        seconda_riga.grid(row=1, column=0, sticky=EW)
+
+        self.frame_parametri = ttk.Frame(seconda_riga)
+        self.frame_parametri.grid(row=0, column=0, sticky=W, padx=5, pady=2)
+
+        self.frame_argomento_funz = ttk.Frame(seconda_riga)
+        self.frame_argomento_funz.grid(row=0, column=1, sticky=W, padx=5, pady=2)
+        ttk.Label(self.frame_argomento_funz, text="f(").pack(side=LEFT)
+        self.valore_entry = ttk.Entry(self.frame_argomento_funz, width=3, justify=RIGHT)
+        self.valore_entry.pack(side=LEFT)
+        ttk.Label(self.frame_argomento_funz, text=") =").pack(side=LEFT)
+        self.valore_label = ttk.Label(self.frame_argomento_funz, text="")
+        self.valore_label.pack(side=LEFT)
+        self.imposta()
+
+        terza_riga = ttk.Frame(controlli)
+        terza_riga.grid(row=2, column=0, pady=2)
+
+        self.range_x_min_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
         self.range_x_min_entry.insert(0, str(self.tela.range_x[0]))
-        self.range_x_max_entry = Entry(a)
+        self.range_x_max_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
         self.range_x_max_entry.insert(0, str(self.tela.range_x[1]))
-        self.range_x_min_entry.place(x=129, y=254, width=30)
-        self.range_x_max_entry.place(x=170, y=254, width=30)
-        self.range_y_min_entry = Entry(a)
+        self.range_y_min_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
         self.range_y_min_entry.insert(0, str(self.tela.range_y[0]))
-        self.range_y_max_entry = Entry(a)
+        self.range_y_max_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
         self.range_y_max_entry.insert(0, str(self.tela.range_y[1]))
-        self.range_y_min_entry.place(x=319, y=254, width=30)
-        self.range_y_max_entry.place(x=360, y=254, width=30)
 
-        self.valore_entry = Entry(self.frame_argomento_funz)
-        self.valore_entry.place(x=55, y=178, width=18)
-
-        Clean = Button(a, text="Aggiorna", font="Times 15", fg="black", bg="medium sea green", command=self.aggiorna)
-        Clean.place(x=310, y=100)
-
-        Imposta = Button(a, text="Imposta", font="Times 15", fg="black", bg="medium sea green", command=self.imposta)
-        Imposta.place(x=310, y=55)
+        ttk.Label(terza_riga, text="Range x [").pack(side=LEFT)
+        self.range_x_min_entry.pack(side=LEFT)
+        ttk.Label(terza_riga, text=";").pack(side=LEFT)
+        self.range_x_max_entry.pack(side=LEFT)
+        ttk.Label(terza_riga, text="]             Range y [").pack(side=LEFT)
+        self.range_y_min_entry.pack(side=LEFT)
+        ttk.Label(terza_riga, text=";").pack(side=LEFT)
+        self.range_y_max_entry.pack(side=LEFT)
+        ttk.Label(terza_riga, text="]").pack(side=LEFT)
 
     def aggiorna(self):
         try:
