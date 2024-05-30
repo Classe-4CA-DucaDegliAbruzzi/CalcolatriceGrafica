@@ -2,7 +2,6 @@
 
 from enum import Enum, auto
 from abc import ABC, abstractmethod
-import abc
 import math
 import tkinter as tk
 from tkinter import ttk
@@ -710,26 +709,26 @@ class InputFunzione(BaseInputParametri):
         return self.__func is not None
 
 
-class BaseGrafico(abc.ABC):
+class BaseGrafico(ABC):
     def __init__(self, tela):
         self.tela = tela
         self.param = self.crea_param()  # metodo che mi restituisce l'input dei parametri
 
-    @abc.abstractmethod
+    @abstractmethod
     def crea_param(self):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def disegna(self):
         pass
 
 
-class BaseGraficoFunzioneX(BaseGrafico, abc.ABC):
-    @abc.abstractmethod
+class BaseGraficoFunzioneX(BaseGrafico, ABC):
+    @abstractmethod
     def crea_param(self):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def funzione(self, x, parametri):
         pass
 
@@ -752,12 +751,12 @@ class BaseGraficoFunzioneX(BaseGrafico, abc.ABC):
         self.tela.linee(lista_punti)
 
 
-class BaseGraficoFunzioneY(BaseGrafico, abc.ABC):
-    @abc.abstractmethod
+class BaseGraficoFunzioneY(BaseGrafico, ABC):
+    @abstractmethod
     def crea_param(self):
         pass
 
-    @abc.abstractmethod
+    @abstractmethod
     def funzione(self, y, parametri):
         pass
 

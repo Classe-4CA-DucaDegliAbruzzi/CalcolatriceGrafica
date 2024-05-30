@@ -1,4 +1,4 @@
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 from base_grafico import Retta, Parabola, Seno, Coseno, FunzioneX, FunzioneY
 from tela import Tela
@@ -7,7 +7,7 @@ from input_parametri import InputFunzione
 
 class Applicazione:
     def __init__(self):
-        self.root = Tk()
+        self.root = tk.Tk()
         self.root.title("Calcolatrice")
         self.root.resizable(False, False)
 
@@ -47,17 +47,17 @@ class Applicazione:
         self.root.columnconfigure(0, weight=1)
 
         controlli = ttk.Frame(self.root)
-        controlli.grid(row=0, column=0, sticky=EW)
+        controlli.grid(row=0, column=0, sticky=tk.EW)
         controlli.columnconfigure(0, weight=1)
 
-        grafico = Canvas(self.root, bg="white", width=500, height=500)
+        grafico = tk.Canvas(self.root, bg="white", width=500, height=500)
         grafico.grid(row=1, column=0)
         self.tela = Tela(grafico)
         self.tela.colore = "red"
         self.tela.spessore = 2
 
         prima_riga = ttk.Frame(controlli)
-        prima_riga.grid(row=0, column=0, sticky=EW)
+        prima_riga.grid(row=0, column=0, sticky=tk.EW)
         prima_riga.columnconfigure(0, weight=0)
         prima_riga.columnconfigure(1, weight=0)
         prima_riga.columnconfigure(2, weight=1)
@@ -67,7 +67,7 @@ class Applicazione:
             width=30,
             values=list(self.funzioni.keys())
         )
-        self.funz_da_selezionare.grid(row=0, column=0, sticky=W, padx=5, pady=2)
+        self.funz_da_selezionare.grid(row=0, column=0, sticky=tk.W, padx=5, pady=2)
         self.funz_da_selezionare.insert(0, self.grafico_default)
         self.funz_da_selezionare["state"] = "readonly"
 
@@ -75,51 +75,51 @@ class Applicazione:
             prima_riga,
             text="Imposta",
             command=self.imposta
-        ).grid(row=0, column=1, sticky=W, padx=5, pady=2)
+        ).grid(row=0, column=1, sticky=tk.W, padx=5, pady=2)
 
         ttk.Button(
             prima_riga,
             text="Aggiorna",
             command=self.aggiorna
-        ).grid(row=0, column=2, sticky=E, padx=5, pady=2)
+        ).grid(row=0, column=2, sticky=tk.E, padx=5, pady=2)
 
         seconda_riga = ttk.Frame(controlli)
-        seconda_riga.grid(row=1, column=0, sticky=EW)
+        seconda_riga.grid(row=1, column=0, sticky=tk.EW)
 
         self.frame_parametri = ttk.Frame(seconda_riga)
-        self.frame_parametri.grid(row=0, column=0, sticky=W, padx=5, pady=2)
+        self.frame_parametri.grid(row=0, column=0, sticky=tk.W, padx=5, pady=2)
 
         self.frame_argomento_funz = ttk.Frame(seconda_riga)
-        self.frame_argomento_funz.grid(row=0, column=1, sticky=W, padx=5, pady=2)
-        ttk.Label(self.frame_argomento_funz, text="f(").pack(side=LEFT)
-        self.valore_entry = ttk.Entry(self.frame_argomento_funz, width=3, justify=RIGHT)
-        self.valore_entry.pack(side=LEFT)
-        ttk.Label(self.frame_argomento_funz, text=") =").pack(side=LEFT)
+        self.frame_argomento_funz.grid(row=0, column=1, sticky=tk.W, padx=5, pady=2)
+        ttk.Label(self.frame_argomento_funz, text="f(").pack(side=tk.LEFT)
+        self.valore_entry = ttk.Entry(self.frame_argomento_funz, width=3, justify=tk.RIGHT)
+        self.valore_entry.pack(side=tk.LEFT)
+        ttk.Label(self.frame_argomento_funz, text=") =").pack(side=tk.LEFT)
         self.valore_label = ttk.Label(self.frame_argomento_funz, text="")
-        self.valore_label.pack(side=LEFT)
+        self.valore_label.pack(side=tk.LEFT)
         self.imposta()
 
         terza_riga = ttk.Frame(controlli)
         terza_riga.grid(row=2, column=0, pady=2)
 
-        self.range_x_min_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
+        self.range_x_min_entry = ttk.Entry(terza_riga, width=4, justify=tk.RIGHT)
         self.range_x_min_entry.insert(0, str(self.tela.range_x[0]))
-        self.range_x_max_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
+        self.range_x_max_entry = ttk.Entry(terza_riga, width=4, justify=tk.RIGHT)
         self.range_x_max_entry.insert(0, str(self.tela.range_x[1]))
-        self.range_y_min_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
+        self.range_y_min_entry = ttk.Entry(terza_riga, width=4, justify=tk.RIGHT)
         self.range_y_min_entry.insert(0, str(self.tela.range_y[0]))
-        self.range_y_max_entry = ttk.Entry(terza_riga, width=4, justify=RIGHT)
+        self.range_y_max_entry = ttk.Entry(terza_riga, width=4, justify=tk.RIGHT)
         self.range_y_max_entry.insert(0, str(self.tela.range_y[1]))
 
-        ttk.Label(terza_riga, text="Range x [").pack(side=LEFT)
-        self.range_x_min_entry.pack(side=LEFT)
-        ttk.Label(terza_riga, text=";").pack(side=LEFT)
-        self.range_x_max_entry.pack(side=LEFT)
-        ttk.Label(terza_riga, text="]             Range y [").pack(side=LEFT)
-        self.range_y_min_entry.pack(side=LEFT)
-        ttk.Label(terza_riga, text=";").pack(side=LEFT)
-        self.range_y_max_entry.pack(side=LEFT)
-        ttk.Label(terza_riga, text="]").pack(side=LEFT)
+        ttk.Label(terza_riga, text="Range x [").pack(side=tk.LEFT)
+        self.range_x_min_entry.pack(side=tk.LEFT)
+        ttk.Label(terza_riga, text=";").pack(side=tk.LEFT)
+        self.range_x_max_entry.pack(side=tk.LEFT)
+        ttk.Label(terza_riga, text="]             Range y [").pack(side=tk.LEFT)
+        self.range_y_min_entry.pack(side=tk.LEFT)
+        ttk.Label(terza_riga, text=";").pack(side=tk.LEFT)
+        self.range_y_max_entry.pack(side=tk.LEFT)
+        ttk.Label(terza_riga, text="]").pack(side=tk.LEFT)
 
     def aggiorna(self):
         try:
@@ -136,8 +136,11 @@ class Applicazione:
 
         self.tela.pulisci()
         self.tela.disegna_sfondo()
-        if self.grafico is not None:
-            self.grafico.disegna()
+        try:
+            if self.grafico is not None:
+                self.grafico.disegna()
+        except Exception:
+            pass
         self.tela.disegna_numeri()
 
         if self.grafico and isinstance(self.grafico.param, InputFunzione):
@@ -148,9 +151,8 @@ class Applicazione:
             risultato = self.grafico.param.valore(val)
             if risultato is None:
                 return
-            self.valore_label.configure(text=str(risultato))
+            self.valore_label.configure(text=f"{risultato:.6g}")
 
-    # imposta
     def imposta(self):
         if self.funz_da_selezionare.get() == "":
             return
