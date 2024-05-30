@@ -1,20 +1,10 @@
 # Calcolatrice Grafica
 
+![Preview](media/preview.png)
+
 ## Specifiche
 
 Potete trovare le specifiche nella cartella `spec/`.
-
-## Numeri gruppi
-
-- Gruppo 1: Francesco Desario
-- Gruppo 2: Elia Bertoldo
-- Gruppo 3: Matteo Favero
-- Gruppo 4: Emma Rossi
-- Gruppo 5: Davide Taffarello
-
-## Diagramma classi
-
-![Diagramma classi](https://raw.githubusercontent.com/Classe-4CA-DucaDegliAbruzzi/CalcolatriceGrafica/main/media/diagramma_classi.png)
 
 ## Codice
 
@@ -32,76 +22,22 @@ dentro a classi e funzioni non è eseguito se non chiamato esplicitamente
 
 ### Stile
 
-Utilizzare nomi di variabili descrittivi eccetto in contesti matematici:
+Vedere le [specifiche generali](spec/specifiche_generali.md#stile).
 
-```python
-❌
-a = []
-x = "Errore"
+## Problemi non risolti
 
-✅
-parti_funzione = []
-msg_errore = "Errore"
-y = a * x**2 + b * x + c
-```
+1. `interpreta_funzione` non accetta numeri con la virgola
+2. `interpreta_funzione` considera parole separate da spazi unite
+3. mancano `Circonferenza`, `Ellisse`, `IperboleTipo1` e `IperboleTipo2`
+4. le righe della tela non si adattano al range selezionato
+5. una funzione non viene disegnata se ci sono punti che non sono nel dominio
+   (es. `sqrt(x)` non viene disegnata quando c'è una parte negativa nella tela)
+6. i numeri nella tela scompaiono quando gli assi escono dalla finestra visibile
 
-Utilizzare un'indentazione di quattro spazi (e *non* tabulazioni):
+## Miglioramenti futuri
 
-```python
-❌
-def funzione():
-  return "Hello"
-
-✅
-def funzione():
-    return "Hello"
-```
-
-Per eseguire del codice all'interno di un file che state scrivendo e che non
-è `main.py`, il codice deve essere messo dentro `if __name__ == "__main__"`:
-
-```python
-❌
-print("Prova")
-
-✅
-if __name__ == "__main__":
-    print("prova")
-```
-
-I nomi di classi, funzioni e attributi devono essere esattamente quelli
-descritti nelle specifiche:
-
-```python
-❌
-class base_grafico(ABC):
-    ...
-
-class InputFunzione:
-    def Validi(self):
-        ...
-
-✅
-class BaseGrafico(ABC):
-    ...
-
-class InputFunzione:
-    def validi(self):
-        ...
-```
-
-Controllare il tipo di un oggetto con `isinstance` e non con `type(x) == ...`:
-
-```python
-❌
-if type(funzione) == ErroreInterpretazione:
-    ...
-if type(funzione) == NodoBase:
-    ...
-
-✅
-if isinstance(funzione, ErroreInterpretazione):
-    ...
-if isinstance(funzione, NodoBase):
-    ...
-```
+- permettere di inserire più funzioni/relazioni
+- permettere di cambiare lo stile delle funzioni (colore, spessore, visibilità)
+- rendere l'interfaccia dinamica (rimuovere "Aggiorna" e aggiornare quando cambiano i dati)
+- utilizzare il mouse per muovere e fare lo zoom sulla tela
+- il disegna funzioni adatta la densità dei punti alla pendenza della funzione
